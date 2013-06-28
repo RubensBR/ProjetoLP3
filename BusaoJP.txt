@@ -1,6 +1,6 @@
 -- EQUIPE
 
-   * Ana Beatrice Severo
+   * Ana Beatrice Santana Severo
    * Carlos André Soares Correia
    * Rubens Godofredo Soares Correia
 
@@ -8,4 +8,9 @@
 
 -- DESCRIÇÃO GERAL
 
-	O sistema JampaBus compreende em informar os itinerários dos ônibus do município de João Pessoa.
+	O sistema BusãoJP compreende em informar os itinerários dos ônibus do município de João Pessoa.
+	Através do aplicativo é possível visualizar a lista das ruas por onde os ônibus passam, seus horários de saída
+	do terminal e também suas rotas no mapa. Os usuários podem contribuir informando onde as paradas estão
+	localizadas. Também é possível indicar onde o usuário pode encontrar paradas próximas a partir de sua localização no GPS.
+	Outra funcionalidade é a visualização do mapa da integração, onde os usuários tem acesso
+	a informação sobre os ônibus que param em uma determinada plataforma.
