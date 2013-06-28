@@ -1,0 +1,11 @@
+-- EQUIPE
+
+   * Ana Beatrice Severo
+   * Carlos André Soares Correia
+   * Rubens Godofredo Soares Correia
+
+
+
+-- DESCRIÇÃO GERAL
+
+	O sistema JampaBus compreende em informar os itinerários dos ônibus do município de João Pessoa.
