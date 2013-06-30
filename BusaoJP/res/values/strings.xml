@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BusaoJP</string>
+    <string name="app_name">BusãoJP</string>
     <string name="action_settings">Settings</string>
+
+    <!-- ActivityMain -->
+    <string name="descricao_imagem">Icone da Aplicação</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="paradas_proximas">Paradas Próximas</string>
+    <string name="terminal_integracao">Terminal de Integração</string>
+    <string name="title_activity_pesquisar">PesquisarActivity</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
