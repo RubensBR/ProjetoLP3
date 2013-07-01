@@ -31,15 +31,15 @@ public class MainActivity extends Activity {
 	    		break;
 	    		
 	    	case R.id.button_favoritos:
-	    		ActivityUtil.mudarActivity(this, PesquisarActivity.class); 
+	    		ActivityUtil.mudarActivity(this, FavoritosActivity.class); 
 	    		break;
 	    	
 	    	case R.id.button_paradas:
-	    		ActivityUtil.mudarActivity(this, PesquisarActivity.class); 
+	    		ActivityUtil.mudarActivity(this, ParadasActivity.class); 
 	    		break;
 	    		
 	    	case R.id.button_terminal:
-	    		ActivityUtil.mudarActivity(this, PesquisarActivity.class); 
+	    		ActivityUtil.mudarActivity(this, IntegracaoActivity.class); 
 	    		break;
 	    		
 	    	default:

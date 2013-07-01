@@ -47,19 +47,22 @@
             android:id="@+id/button_favoritos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/favoritos" />
+            android:text="@string/favoritos"
+            android:onClick="trataMenu" />
         
         <Button
             android:id="@+id/button_paradas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/paradas_proximas" />
+            android:text="@string/paradas_proximas"
+            android:onClick="trataMenu" />
         
         <Button
             android:id="@+id/button_terminal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/terminal_integracao" />
+            android:text="@string/terminal_integracao"
+            android:onClick="trataMenu" />
         
     </LinearLayout>
 
