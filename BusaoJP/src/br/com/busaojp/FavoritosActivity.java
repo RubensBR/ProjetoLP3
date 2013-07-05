@@ -1,15 +1,28 @@
 package br.com.busaojp;
 
-import android.os.Bundle;
+import br.com.busaojp.utils.ActivityUtil;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
-public class FavoritosActivity extends Activity {
+public class FavoritosActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.favoritos);
+		
+		Button b = (Button)findViewById(R.id.parada);
+		b.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				ActivityUtil.mudarActivity(FavoritosActivity.this, RotasActivity.class);	
+			}
+		});
+
 	}
 
 	@Override
