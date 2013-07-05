@@ -3,6 +3,8 @@ package br.com.busaojp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import br.com.busaojp.utils.ActivityUtil;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,17 +34,24 @@ public class PesquisarActivity extends Activity {
 		lista.addAll(Arrays.asList(res));
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
-		mListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position,
-					long id) {
-				Toast.makeText(getApplicationContext(),
-					      "Click ListItem Number " + position + ", " + res[position], Toast.LENGTH_LONG)
-					      .show();
-			}});
+		mListView.setOnItemClickListener(new TrataItemSelecionado());
 	
 	}
-
+	
+	
+	
+	private class TrataItemSelecionado implements OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {			
+			/*Toast.makeText(getApplicationContext(),
+				      "Click ListItem Number " + position + ", " + 
+				      (String)parent.getItemAtPosition(position), Toast.LENGTH_LONG).show();*/
+			Bundle parametro = new Bundle();
+			parametro.putString("linha", (String)parent.getItemAtPosition(position));
+			ActivityUtil.mudarActivity(PesquisarActivity.this, ItirenarioActivity.class, parametro);
+		}		
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
