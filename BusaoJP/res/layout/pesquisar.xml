@@ -10,4 +10,60 @@
     android:background="@drawable/fundo"
     tools:context=".PesquisarActivity" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/pesquisar_por" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+                
+	    <RadioButton
+	        android:id="@+id/linha_radioButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/linha" />
+	
+	    <RadioButton
+	        android:id="@+id/logradouro_radioButton"
+	        android:layout_marginLeft="20dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/logradouro" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="134.36"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/busca_imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icone_busca" />
+    </LinearLayout>
+	
+    <ListView 
+        android:id="@+id/resultado_busca"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#FFECECEC"
+        android:dividerHeight="2sp"/>
 </LinearLayout>

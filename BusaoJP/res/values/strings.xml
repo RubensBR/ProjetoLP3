@@ -10,28 +10,27 @@
     <string name="favoritos">Favoritos</string>
     <string name="paradas_proximas">Paradas Próximas</string>
     <string name="terminal_integracao">Terminal de Integração</string>
+    
+    <!-- PesquisarActivity -->
     <string name="title_activity_pesquisar">Pesquisar</string>
-
+    <string name="linha">Linha: </string>
+    <string name="logradouro">Logradouro: </string>
+    <string name="pesquisar_por">Pesquisar por: </string>
+       
+   
     <!-- FavoritosActivity -->
     <string name="title_activity_favoritos">Favoritos</string>
-    <string-array name="favoritos">
-        <item >1502 - Geisel</item>
-        <item >402 - Torre/Tambauzinho</item>
-        <item >1510 - Circular</item>
-        <item >514 - Mangabeira</item>
-        <item >3510 - Bancários</item>
-        <item >507 - Cabo Branco</item>
-    </string-array>
-
+    
+    
     <!-- ParadasActivity -->
     <string name="title_activity_paradas">Paradas Próximas</string>
-
+    
+    
     <!-- IntegracaoActivity -->
     <string name="title_activity_integracao">Terminal de Integração</string>
-    <string name="title_activity_rotas">Rotas</string>
-    <string name="hello_world">Hello world!</string>
-	
+    
+
     <!-- RotasActivity -->
     <string name="Marcar_parada">Marcar Parada</string>
-    
+    <string name="title_activity_rotas">Rotas</string>
 </resources>
