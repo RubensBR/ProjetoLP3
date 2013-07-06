@@ -60,10 +60,12 @@
             android:src="@drawable/icone_busca" />
     </LinearLayout>
 	
-    <ListView 
+    <ListView
         android:id="@+id/resultado_busca"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#FFECECEC"
-        android:dividerHeight="2sp"/>
+        android:background="@color/android:white"
+        android:dividerHeight="2sp" />
+
 </LinearLayout>

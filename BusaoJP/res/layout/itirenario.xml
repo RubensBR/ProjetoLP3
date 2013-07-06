@@ -1,67 +1,70 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fundo"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".HorarioActivity" >   
-    
+    tools:context=".HorarioActivity" >
 
-    <LinearLayout 
+    <LinearLayout
+        android:id="@+id/titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-             
-        <ImageView	        
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:src="@drawable/onibus" 
-	        android:layout_marginRight="10dp"/>
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/ImageView1"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:src="@drawable/onibus" />
+
         <TextView
-	        android:id="@+id/onibus_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/hello_world"
-	        android:textSize="25sp" />
-        
+            android:id="@+id/onibus_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_itinerario"
+            android:gravity="right"
+            android:textSize="25sp" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    
-   	<LinearLayout 
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_alignLeft="@+id/titulo"
+        android:layout_alignParentBottom="true"
         android:gravity="center_horizontal">
 
-   		<ImageButton
-   		    android:id="@+id/imageButton3"
-   		    android:layout_width="wrap_content"
-   		    android:layout_height="wrap_content"
-   		    android:src="@android:drawable/ic_menu_recent_history"
-   		    android:onClick="mostraHorarios" />
+        <ImageButton
+            android:id="@+id/horario"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="7dp"
+            android:onClick="botoes"
+            android:src="@android:drawable/ic_menu_recent_history" />
 
-		    <ImageButton
-		        android:id="@+id/imageButton1"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:src="@android:drawable/btn_star_big_on"/>
+        <ImageButton
+            android:id="@+id/favoritos"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="botoes"
+            android:src="@android:drawable/btn_star_big_on" />
 
-		    <ImageButton
-		        android:id="@+id/imageButton2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:src="@android:drawable/ic_menu_mapmode" />
-        
-         </LinearLayout>
+        <ImageButton
+            android:id="@+id/mapas"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="botoes"
+            android:src="@android:drawable/ic_menu_mapmode" />
+    </LinearLayout>
 
-   	
-    
-</LinearLayout>
+</RelativeLayout>

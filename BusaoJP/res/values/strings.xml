@@ -25,7 +25,7 @@
 
     <!-- IntegracaoActivity -->
     <string name="title_activity_integracao">Terminal de Integração</string>
-    <string name="title_activity_itirenario">Itirenário</string>
+    <string name="title_activity_itinerario">Itinerário</string>
     <string name="hello_world">Hello world!</string>
     
     <!-- HorarioActivity -->

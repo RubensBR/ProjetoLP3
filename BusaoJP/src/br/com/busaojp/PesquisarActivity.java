@@ -3,8 +3,6 @@ package br.com.busaojp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import br.com.busaojp.utils.ActivityUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import br.com.busaojp.utils.ActivityUtil;
 
 public class PesquisarActivity extends Activity {
 
@@ -42,11 +40,7 @@ public class PesquisarActivity extends Activity {
 	
 	private class TrataItemSelecionado implements OnItemClickListener {
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {			
-			/*Toast.makeText(getApplicationContext(),
-				      "Click ListItem Number " + position + ", " + 
-				      (String)parent.getItemAtPosition(position), Toast.LENGTH_LONG).show();*/
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {			
 			Bundle parametro = new Bundle();
 			parametro.putString("linha", (String)parent.getItemAtPosition(position));
 			ActivityUtil.mudarActivity(PesquisarActivity.this, ItirenarioActivity.class, parametro);

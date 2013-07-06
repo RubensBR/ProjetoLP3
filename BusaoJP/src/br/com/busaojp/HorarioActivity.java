@@ -1,10 +1,9 @@
 package br.com.busaojp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
