@@ -13,8 +13,8 @@
 
     <!-- PesquisarActivity -->
     <string name="title_activity_pesquisar">Pesquisar</string>
-    <string name="linha">Linha: </string>
-    <string name="logradouro">Logradouro: </string>
+    <string name="linha">Linha</string>
+    <string name="logradouro">Logradouro</string>
     <string name="pesquisar_por">Pesquisar por: </string>
 
     <!-- FavoritosActivity -->
