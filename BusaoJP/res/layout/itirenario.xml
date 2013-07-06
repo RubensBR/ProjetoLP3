@@ -1,70 +1,91 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo"
-    android:gravity="center_vertical"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HorarioActivity" >
-
-    <LinearLayout
-        android:id="@+id/titulo"
+	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" 
+        android:layout_marginBottom="8dp">
 
         <ImageView
-            android:id="@+id/ImageView1"
             android:layout_width="32sp"
             android:layout_height="32sp"
-            android:layout_gravity="bottom"
             android:layout_marginRight="10dp"
-            android:gravity="right"
             android:src="@drawable/onibus" />
 
         <TextView
             android:id="@+id/onibus_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_activity_itinerario"
-            android:gravity="right"
+            android:text="@string/hello_world"
             android:textSize="25sp" />
     </LinearLayout>
-
+    
     <LinearLayout
-        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/titulo"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+        
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ida"
+        android:layout_weight="1" />
+        
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volta" 
+       	android:layout_weight="1" /> 
+    </LinearLayout>
+
+    
+    <ListView 
+        android:id="@+id/lista_rota"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:divider="#FFECECEC"
+        android:dividerHeight="2sp"
+        android:background="#000000FF"/>
+       
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/horario"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="7dp"
-            android:onClick="botoes"
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="mostraHorarios"
             android:src="@android:drawable/ic_menu_recent_history" />
 
         <ImageButton
-            android:id="@+id/favoritos"
-            android:layout_width="50dp"
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="botoes"
             android:src="@android:drawable/btn_star_big_on" />
 
         <ImageButton
-            android:id="@+id/mapas"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:onClick="botoes"
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	android:onClick="verRota"
             android:src="@android:drawable/ic_menu_mapmode" />
     </LinearLayout>
 
-</RelativeLayout>
+   
+</LinearLayout>
