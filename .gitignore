@@ -14,6 +14,7 @@ BusaoJP/gen/
 
 # Local configuration file (sdk path, etc)
 BusaoJP/local.properties
+BusaoJP/project.properties
 
 # Eclipse project files
 BusaoJP/.classpath
@@ -21,4 +22,8 @@ BusaoJP/.project
 
 #metadata
 .metadata/
+
+#JavaWeb
+*.war
+*.ear
 
