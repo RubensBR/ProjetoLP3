@@ -24,7 +24,6 @@ BusaoJP/.project
 .metadata/
 
 #JavaWeb
-# Package Files #
-*.jar
 *.war
 *.ear
+
