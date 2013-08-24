@@ -3,15 +3,11 @@ package br.com.busaojp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import br.com.busaojp.utils.ActivityUtil;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.view.View.OnClickListener;
 
 public class FavoritosActivity extends Activity{
 	

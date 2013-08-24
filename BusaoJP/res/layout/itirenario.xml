@@ -9,12 +9,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HorarioActivity" >
+
 	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" 
-        android:layout_marginBottom="8dp">
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:layout_marginBottom="8dp"
+	    android:gravity="left"
+	    android:orientation="horizontal" >
 
         <ImageView
             android:layout_width="32sp"
@@ -26,7 +28,7 @@
             android:id="@+id/onibus_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
+            android:text="@string/title_activity_itinerario"
             android:textSize="25sp" />
     </LinearLayout>
     
@@ -57,7 +59,7 @@
         android:layout_weight="1"
         android:divider="#FFECECEC"
         android:dividerHeight="2sp"
-        android:background="#000000FF"/>
+        android:background="@color/android:white"/>
        
     <LinearLayout
         android:layout_marginTop="8dp"
@@ -68,21 +70,22 @@
 
         <ImageButton
             android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="mostraHorarios"
             android:src="@android:drawable/ic_menu_recent_history" />
 
         <ImageButton
             android:id="@+id/imageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="verFavoritos"
             android:src="@android:drawable/btn_star_big_on" />
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
         	android:onClick="verRota"
             android:src="@android:drawable/ic_menu_mapmode" />
     </LinearLayout>

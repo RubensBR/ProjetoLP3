@@ -49,6 +49,10 @@ public class ItirenarioActivity extends Activity {
 	public void verRota(View v) {
 		ActivityUtil.mudarActivity(this, RotasActivity.class);
 	}
+	
+	public void verFavoritos(View v) {
+		ActivityUtil.mudarActivity(this, FavoritosActivity.class);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
