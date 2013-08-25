@@ -14,7 +14,10 @@ public class OnibusDAOListVersion implements OnibusDAO {
 	
 	private ArrayList<Onibus> gerarBanco() {
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();
-		for (int linha = 1; linha <= 4; ++linha) {
+		String[] horarios = {"05:00", "06:00", "07:00", "08:00", "09:00",
+				"10:00", "11:00"};
+		
+		for (int linha = 1; linha <= 20; ++linha) {
 			Onibus onibus = new Onibus("000" + linha, "Onibus " + linha);
 			Rota rota = new Rota();
 			ArrayList<String> ruas = new ArrayList<String>();
@@ -24,6 +27,7 @@ public class OnibusDAOListVersion implements OnibusDAO {
 			rota.addRotaIda(ruas);
 			rota.addRotaVolta(ruas);
 			onibus.setRota(rota);
+			onibus.setHorarios(horarios);
 			lista.add(onibus);
 		}
 		return lista;

@@ -37,7 +37,9 @@ public class Servidor extends HttpServlet {
 		OnibusDAO dao = new OnibusDAOListVersion();
 		ArrayList<Onibus> onibus = dao.lista();
 		JSONArray jsonArray = new JSONArray(onibus);
-		try {
+		out.println(jsonArray.toString());
+		System.out.println("Resposta enviada");
+		/*try {
 			JSONArray ar = new JSONArray(jsonArray.toString());
 				for (int i = 0; i < ar.length(); ++i) {
 				JSONObject json = ar.getJSONObject(i);
@@ -46,6 +48,7 @@ public class Servidor extends HttpServlet {
 				JSONArray volta = rota.getJSONArray("volta");
 				String linha = json.getString("linha");
 				String nome = json.getString("nome");
+				JSONArray horarios = json.getJSONArray("horarios");
 			
 				out.println("=== " + linha + " - " + nome + " ===");
 				out.println("Rota Ida:");
@@ -58,11 +61,16 @@ public class Servidor extends HttpServlet {
 					String r = volta.getString(rua);
 					out.println(r + "");					
 				}
+				out.println("horarios:");
+				for (int h = 0; h < horarios.length(); ++h) {
+					String r = horarios.getString(h);
+					out.println(r);					
+				}
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		
