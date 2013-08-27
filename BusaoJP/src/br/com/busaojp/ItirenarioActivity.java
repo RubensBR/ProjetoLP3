@@ -1,7 +1,7 @@
 package br.com.busaojp;
 
 import java.util.ArrayList;
-import br.com.busaojp.utils.ActivityUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.com.busaojp.onibus.Onibus;
+import br.com.busaojp.utils.ActivityUtil;
 
 public class ItirenarioActivity extends Activity {
 	
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;
+	private Onibus onibus;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +26,11 @@ public class ItirenarioActivity extends Activity {
 		
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
-		
 		if (parametros != null) {
-			String onibus = parametros.getString("linha");
+			onibus = (Onibus) parametros.getSerializable("onibus");
 			TextView textView = (TextView) findViewById(R.id.onibus_title);
-			textView.setText(onibus);			
-		}
+			textView.setText(onibus.getLinha() + " - " + onibus.getNome());			
+		}		
 		
 		mListView = (ListView) findViewById(R.id.lista_rota);		
 		ArrayList<String> lista = new ArrayList<String>();

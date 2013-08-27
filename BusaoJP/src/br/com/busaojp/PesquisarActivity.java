@@ -1,22 +1,36 @@
 package br.com.busaojp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+import br.com.busaojp.onibus.Onibus;
+import br.com.busaojp.onibus.OnibusDAO;
+import br.com.busaojp.onibus.OnibusDAOJSON;
+import br.com.busaojp.onibus.OnibusListAdapter;
 import br.com.busaojp.utils.ActivityUtil;
+import br.com.busaojp.utils.Operacoes;
 
 public class PesquisarActivity extends Activity {
 
 	private ListView mListView;
-	private ArrayAdapter<String> arrayAdapter;
+	private ProgressDialog mProgress;
+	private EditText mEditor;
+	private RadioGroup mRadioGroup;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +38,46 @@ public class PesquisarActivity extends Activity {
 		setContentView(R.layout.pesquisar);
 		
 		mListView = (ListView) findViewById(R.id.resultado_busca);
-		final String res[] = {"202 - Geisel", "1500 - Circular", "1510 - Circular", "1519 - Valentina",
-				"1502 - Geisel Epitacio", "202 - Geisel", "1500 - Circular", "1510 - Circular", "1519 - Valentina",
-				"1502 - Geisel Epitacio"};
+		mRadioGroup = (RadioGroup) findViewById(R.id.radiobutton_pesquisar);
+		mEditor = (EditText) findViewById(R.id.search);
+		mEditor.setOnEditorActionListener(new OnEditorActionListener() {			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				boolean teste = false;
+				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+					realizarBusca();
+					teste = true;
+				}
+				return teste;				
+			}
+		});
 		
-		ArrayList<String> lista = new ArrayList<String>();
-		lista.addAll(Arrays.asList(res));
-		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
-		mListView.setAdapter(arrayAdapter);
-		mListView.setOnItemClickListener(new TrataItemSelecionado());
-	
+		ListarAsync listar = new ListarAsync();
+		listar.execute();
 	}
 	
+	public void realizarBusca() {
+		String busca = mEditor.getText().toString();	
+		int opcao = mRadioGroup.getCheckedRadioButtonId();
+		OperacaoAsync operacao = new OperacaoAsync(busca);
+		operacao.execute(opcao);		
+	}
 	
+	public void imprime(String msg) {
+		AlertDialog.Builder popup = new AlertDialog.Builder(PesquisarActivity.this);
+		popup.setTitle("DEBUG");
+		popup.setMessage(msg);
+		popup.setPositiveButton("Ok", null);
+		popup.show();
+	}
 	
 	private class TrataItemSelecionado implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {			
 			Bundle parametro = new Bundle();
-			parametro.putString("linha", (String)parent.getItemAtPosition(position));
+			Onibus onibus = (Onibus) parent.getItemAtPosition(position);
+			parametro.putSerializable("onibus", onibus);
+			
 			ActivityUtil.mudarActivity(PesquisarActivity.this, ItirenarioActivity.class, parametro);
 		}		
 	}
@@ -52,6 +87,86 @@ public class PesquisarActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.pesquisar, menu);
 		return true;
+	}
+	
+	//==============
+	private class ListarAsync extends AsyncTask<String, String, ArrayList<Onibus>> {
+		private OnibusDAO dao;
+		@Override
+		protected void onPreExecute() {
+			mProgress = ProgressDialog.show(PesquisarActivity.this, "Aguarde", "Acessando o banco de dados remoto.", true);
+		}
+		
+		@Override
+		protected ArrayList<Onibus> doInBackground(String... params) {
+			dao = new OnibusDAOJSON();
+			ArrayList<Onibus> lista = dao.lista();
+			return lista;
+			
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<Onibus> lista) {
+			mProgress.cancel();
+			if (lista == null) {
+				AlertDialog.Builder popup = new AlertDialog.Builder(PesquisarActivity.this);
+				popup.setTitle("Erro");
+				popup.setMessage("Erro a tentar conectar com o servidor. Verifique sua conexão com a internet.");
+				popup.setPositiveButton("Ok", null);
+				popup.show();
+				return;
+			}			
+			
+			mListView.setAdapter(new OnibusListAdapter(lista, PesquisarActivity.this));
+			mListView.setOnItemClickListener(new TrataItemSelecionado());			
+		}
+	}
+	//============
+	private class OperacaoAsync extends AsyncTask<Integer, String, ArrayList<Onibus>> {
+		private OnibusDAO dao;
+		private String busca;
+		
+		public OperacaoAsync(String busca) {
+			this.busca = busca;
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			mProgress = ProgressDialog.show(PesquisarActivity.this, "Aguarde", "Acessando o banco de remoto.", true);
+		}
+		
+		@Override
+		protected ArrayList<Onibus> doInBackground(Integer... params) {
+			dao = new OnibusDAOJSON();
+			ArrayList<Onibus> lista = new ArrayList<Onibus>(); 
+			switch (params[0]) {
+			case R.id.linha_radioButton:
+				lista = dao.buscaPorLinha(busca);
+				break;
+			case R.id.logradouro_radioButton:
+				lista = dao.buscaPorLogradouro(busca);
+				break;
+			default:
+				break;
+			}
+			return lista;
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<Onibus> lista) {
+			mProgress.cancel();
+			if (lista == null) {
+				AlertDialog.Builder popup = new AlertDialog.Builder(PesquisarActivity.this);
+				popup.setTitle("Erro");
+				popup.setMessage("Erro a tentar conectar com o servidor. Verifique sua conexão com a internet.");
+				popup.setPositiveButton("Ok", null);
+				popup.show();
+				return;
+			}			
+			
+			mListView.setAdapter(new OnibusListAdapter(lista, PesquisarActivity.this));
+			mListView.setOnItemClickListener(new TrataItemSelecionado());			
+		}
 	}
 
 }

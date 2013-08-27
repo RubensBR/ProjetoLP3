@@ -10,14 +10,8 @@
     android:background="@drawable/fundo"
     tools:context=".PesquisarActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/pesquisar_por" />
-
     <RadioGroup
+        android:id="@+id/radiobutton_pesquisar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -27,7 +21,8 @@
 	        android:id="@+id/linha_radioButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/linha" />
+	        android:text="@string/linha" 
+	        android:checked="true" />
 	
 	    <RadioButton
 	        android:id="@+id/logradouro_radioButton"
@@ -44,20 +39,14 @@
         android:orientation="horizontal" >
 
         <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:id="@+id/search"            
             android:layout_height="wrap_content"
-            android:layout_weight="134.36"
-            android:ems="10" >
-
-            <requestFocus />
+            android:layout_width="match_parent"
+            android:ems="10" 
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:hint="@string/pesquisar">
         </EditText>
-
-        <ImageButton
-            android:id="@+id/busca_imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icone_busca" />
     </LinearLayout>
 	
     <ListView
