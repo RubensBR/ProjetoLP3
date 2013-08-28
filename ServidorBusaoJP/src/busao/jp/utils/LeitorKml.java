@@ -11,7 +11,7 @@ public class LeitorKml {
 	
 	public static final String IDA = "_ida";
 	public static final String VOLTA = "_volta";
-	private final String CAMINHO = "C:\\Users\\Rubens\\Documents\\GitHub\\ProjetoLP3\\ServidorBusaoJP\\resources\\";
+	private final String CAMINHO = "C:\\Desenvolvedor\\ProjetoLP3\\ServidorBusaoJP\\resources\\";
 	
 	public RotaMapeada pegarRotaMapeada(String linha, String sentido) {		
 		
@@ -22,7 +22,7 @@ public class LeitorKml {
 			BufferedReader rd = new BufferedReader(kml);
 			while (rd.ready()) {			
 				String row = rd.readLine();
-				if (row.contains("<Placemark>")) { //inicio de nova marcação
+				if (row.contains("<Placemark>")) { //inicio de nova marcaï¿½ï¿½o
 					rd.readLine(); //<styleUrl> 
 					String aux = rd.readLine();
 					String name = aux.replace("<name>", "").replace("</name>","").trim();
