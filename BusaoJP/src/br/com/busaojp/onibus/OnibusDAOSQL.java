@@ -2,6 +2,8 @@ package br.com.busaojp.onibus;
 
 import java.util.ArrayList;
 
+import br.com.busaojp.rotamaps.RotaMaps;
+
 public class OnibusDAOSQL implements OnibusDAO {
 
 	@Override
@@ -32,6 +34,12 @@ public class OnibusDAOSQL implements OnibusDAO {
 
 	@Override
 	public ArrayList<Onibus> buscaPorLogradouro(String linha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RotaMaps buscaRotaMaps(String linha) {
 		// TODO Auto-generated method stub
 		return null;
 	}

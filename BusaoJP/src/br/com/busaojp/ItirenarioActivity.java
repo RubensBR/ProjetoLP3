@@ -3,7 +3,10 @@ package br.com.busaojp;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,12 +14,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import br.com.busaojp.onibus.Onibus;
+import br.com.busaojp.onibus.OnibusDAO;
+import br.com.busaojp.onibus.OnibusDAOJSON;
+import br.com.busaojp.rotamaps.RotaMaps;
 import br.com.busaojp.utils.ActivityUtil;
 
 public class ItirenarioActivity extends Activity {
 	
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;
+	private ProgressDialog mProgress;
 	private Onibus onibus;
 	
 	@Override
@@ -49,7 +56,8 @@ public class ItirenarioActivity extends Activity {
 	}
 	
 	public void verRota(View v) {
-		ActivityUtil.mudarActivity(this, RotasActivity.class);
+		//new PegaRotaTask().execute(onibus.getLinha());
+		new PegaRotaTask().execute("1502");
 	}
 	
 	public void verFavoritos(View v) {
@@ -61,6 +69,39 @@ public class ItirenarioActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.itirenario, menu);
 		return true;
+	}
+	
+	private class PegaRotaTask extends AsyncTask<String, String, RotaMaps> {
+		private OnibusDAO dao;
+		
+		@Override
+		protected void onPreExecute() {
+			mProgress = ProgressDialog.show(ItirenarioActivity.this, "Aguarde", "Acessando o banco de dados remoto.", true);
+		}
+		
+		@Override
+		protected RotaMaps doInBackground(String... params) {
+			dao = new OnibusDAOJSON();
+			RotaMaps rota = dao.buscaRotaMaps(params[0]);
+			return rota;			
+		}
+		
+		@Override
+		protected void onPostExecute(RotaMaps rota) {
+			mProgress.cancel();
+			if (rota == null) {
+				AlertDialog.Builder popup = new AlertDialog.Builder(ItirenarioActivity.this);
+				popup.setTitle("Erro");
+				popup.setMessage("Erro a tentar conectar com o servidor. Verifique sua conexão com a internet.");
+				popup.setPositiveButton("Ok", null);
+				popup.show();
+				return;
+			}			
+			
+			Bundle parametro = new Bundle();
+			parametro.putSerializable("rota", rota);
+			ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
+		}
 	}
 
 }

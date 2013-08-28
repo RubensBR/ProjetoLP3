@@ -8,13 +8,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.provider.OpenableColumns;
+import br.com.busaojp.rotamaps.Marcador;
+import br.com.busaojp.rotamaps.Posicao;
+import br.com.busaojp.rotamaps.RotaMapeada;
+import br.com.busaojp.rotamaps.RotaMaps;
 import br.com.busaojp.utils.HttpUtil;
 import br.com.busaojp.utils.Operacoes;
 
 public class OnibusDAOJSON implements OnibusDAO {
 
-	private final String ENDERECO = "http://192.168.0.11:8080/ServidorBusaoJP/Servidor";
+	private final String ENDERECO = "http://192.168.0.12:8080/ServidorBusaoJP/Servidor";
 	
 	@Override
 	public ArrayList<Onibus> lista() {		
@@ -33,7 +36,7 @@ public class OnibusDAOJSON implements OnibusDAO {
 
 	@Override
 	public Onibus getOnibus(String linha) {
-		Onibus onibus = null;
+		/*Onibus onibus = null;
 		try {
 			HttpUtil.urlContentPost(ENDERECO, "buscar", linha);
 			
@@ -41,7 +44,7 @@ public class OnibusDAOJSON implements OnibusDAO {
 			return null;
 		} catch (IOException e) {
 			return null;
-		}
+		}*/
 		return null;
 	}
 
@@ -116,6 +119,77 @@ public class OnibusDAOJSON implements OnibusDAO {
 			return null;		
 		}
 		return lista;
+	}
+
+	@Override
+	public RotaMaps buscaRotaMaps(String linha) {
+		try {
+			String res = HttpUtil.urlContentPost(ENDERECO, "operacao", ""+Operacoes.GET_ROTA_MAPS, "busca", linha);
+			System.out.println(res);
+			System.out.println("tamanho: " + res.length());
+			
+			JSONObject json = new JSONObject(res);
+			
+			ArrayList<Posicao> posVolta = new ArrayList<Posicao>();
+			ArrayList<Marcador> marcVolta = new ArrayList<Marcador>();
+			
+			JSONObject voltaJSON = json.getJSONObject("volta");
+			JSONArray rotaVolta = voltaJSON.getJSONArray("rota");
+			
+			for (int i = 0; i < rotaVolta.length(); ++i) {
+				JSONObject posicao = rotaVolta.getJSONObject(i);
+				double latitude = posicao.getDouble("latitude");
+				double longitude = posicao.getDouble("longitude");
+				posVolta.add(new Posicao(latitude, longitude));
+			}
+			
+			JSONArray marcadores = voltaJSON.getJSONArray("marcadores");
+			
+			for (int i = 0; i < marcadores.length(); ++i) {
+				JSONObject marcador = marcadores.getJSONObject(i);
+				JSONObject marcadorPosicao = marcador.getJSONObject("posicao");
+				String nome = marcador.getString("nome");
+				double latitude = marcadorPosicao.getDouble("latitude");
+				double longitude = marcadorPosicao.getDouble("longitude");
+				marcVolta.add(new Marcador(nome, new Posicao(latitude, longitude)));
+			}		
+			
+			//Ida
+			ArrayList<Posicao> posIda = new ArrayList<Posicao>();
+			ArrayList<Marcador> marcIda = new ArrayList<Marcador>();
+			
+			JSONObject idaJSON = json.getJSONObject("ida");
+			JSONArray rotaIda = idaJSON.getJSONArray("rota");
+			
+			for (int i = 0; i < rotaIda.length(); ++i) {
+				JSONObject posicao = rotaIda.getJSONObject(i);
+				double latitude = posicao.getDouble("latitude");
+				double longitude = posicao.getDouble("longitude");
+				posIda.add(new Posicao(latitude, longitude));
+			}		
+			
+			marcadores = idaJSON.getJSONArray("marcadores");
+			
+			for (int i = 0; i < marcadores.length(); ++i) {
+				JSONObject marcador = marcadores.getJSONObject(i);
+				JSONObject marcadorPosicao = marcador.getJSONObject("posicao");		
+				String nome = marcador.getString("nome");
+				double latitude = marcadorPosicao.getDouble("latitude");
+				double longitude = marcadorPosicao.getDouble("longitude");
+				marcIda.add(new Marcador(nome, new Posicao(latitude, longitude)));
+			}
+			
+			return new RotaMaps(new RotaMapeada(posIda, marcIda), new RotaMapeada(posVolta, marcVolta));
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }

@@ -23,7 +23,6 @@ import br.com.busaojp.onibus.OnibusDAO;
 import br.com.busaojp.onibus.OnibusDAOJSON;
 import br.com.busaojp.onibus.OnibusListAdapter;
 import br.com.busaojp.utils.ActivityUtil;
-import br.com.busaojp.utils.Operacoes;
 
 public class PesquisarActivity extends Activity {
 
@@ -77,7 +76,6 @@ public class PesquisarActivity extends Activity {
 			Bundle parametro = new Bundle();
 			Onibus onibus = (Onibus) parent.getItemAtPosition(position);
 			parametro.putSerializable("onibus", onibus);
-			
 			ActivityUtil.mudarActivity(PesquisarActivity.this, ItirenarioActivity.class, parametro);
 		}		
 	}
