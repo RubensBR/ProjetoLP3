@@ -70,6 +70,13 @@
             android:name="br.com.busaojp.RotasActivity"
             android:label="@string/title_activity_rotas" >
         </activity>
+        
+        <activity android:name=".BusaoPreferences"
+			android:label="@string/title_activity_preferencias">
+			<intent-filter>
+				<category android:name="android.intent.category.PREFERENCE" />
+			</intent-filter>
+		</activity>
     </application>
 
 </manifest>
