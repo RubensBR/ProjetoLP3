@@ -47,7 +47,7 @@
     <string name="dialogTitle">Selecione o Idioma</string>
     <string name="dialogFonte">Selecione o Tamanho da Fonte</string>
     <string name="fonte">Tamanho da fonte</string>
-    <string name="summary_fonte">Selecione o tamanho da fonte desejado</string>
+    <string name="summary_fonte">Selecione o tamanho da fonte para o Menu Principal</string>
     <string name="musica">Música</string>
     <string name="summary_musica">Marque se desejar que a música seja ativada</string>
     

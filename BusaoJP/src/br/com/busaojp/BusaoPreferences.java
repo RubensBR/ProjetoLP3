@@ -3,7 +3,7 @@ package br.com.busaojp;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-public class BusaoPreferences extends PreferenceActivity{
+public class BusaoPreferences extends PreferenceActivity {
 	 
 	
 	@Override
@@ -12,8 +12,11 @@ public class BusaoPreferences extends PreferenceActivity{
 	 
 	        addPreferencesFromResource(R.xml.preferencias);
 	        
-	    }
+	        
 	}
+	
+}
+	
 	
 
 

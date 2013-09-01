@@ -3,9 +3,9 @@ package br.com.busaojp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,13 +13,16 @@ import android.view.View;
 import android.widget.Button;
 import br.com.busaojp.utils.ActivityUtil;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
 	Resources resources; 
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        pref.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -64,5 +67,47 @@ public class MainActivity extends Activity {
      
         return super.onOptionsItemSelected(item);
     }
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences pref, String key) { 		
+ 		
+		if(key.equals("fonte")){
+			Button i = (Button)findViewById(R.id.button_terminal);
+	 		Button i2 = (Button)findViewById(R.id.button_pesquisar);
+	 		Button i3 = (Button)findViewById(R.id.button_paradas);
+	 		Button i4 = (Button)findViewById(R.id.button_favoritos);
+	 		
+			if(pref.getString(key, "14").equals("12")){
+			 i.setTextSize(12);
+	       	 i2.setTextSize(12);
+	       	 i3.setTextSize(12);
+	       	 i4.setTextSize(12);
+
+			}
+			if(pref.getString(key, "14").equals("14")){
+	       	 i.setTextSize(14);
+	       	 i2.setTextSize(14);
+	       	 i3.setTextSize(14);
+	       	 i4.setTextSize(14);
+
+	        }
+			if(pref.getString(key, "14").equals("16")){
+	       	 i.setTextSize(16);
+	       	 i2.setTextSize(16);
+	       	 i3.setTextSize(16);
+	       	 i4.setTextSize(16);
+
+	        }
+			
+			if(pref.getString(key, "14").equals("18")){
+		     i.setTextSize(18);
+		     i2.setTextSize(18);
+		     i3.setTextSize(18);
+		     i4.setTextSize(18);
+		     
+		    }
+		}
+		
+	}
     
 }
