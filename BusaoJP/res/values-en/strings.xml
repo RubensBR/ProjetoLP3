@@ -50,6 +50,8 @@
     <string name="summary_fonte">Select the desired Font Size for the Main Menu</string>
     <string name="musica">Music</string>
     <string name="summary_musica">Check if you want the music to play</string>
+    <string name="bg">Background</string>
+    <string name="summary_bg">Check if you want to change the background picture</string>
     
     
 </resources>

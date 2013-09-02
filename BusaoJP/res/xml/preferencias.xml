@@ -24,7 +24,12 @@
         android:title="@string/musica"
         android:summary="@string/summary_musica"
         />
-    
+
+    <CheckBoxPreference 
+        android:key="background"
+        android:title="@string/bg"
+        android:summary="@string/summary_bg"
+        />
     
     
     

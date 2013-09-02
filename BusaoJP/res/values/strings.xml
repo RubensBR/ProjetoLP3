@@ -50,6 +50,8 @@
     <string name="summary_fonte">Selecione o tamanho da fonte para o Menu Principal</string>
     <string name="musica">Música</string>
     <string name="summary_musica">Marque se desejar que a música seja ativada</string>
+    <string name="bg">Plano de Fundo</string>
+    <string name="summary_bg">Marque se desejar a outra opção de plano de fundo</string>
     
     
 </resources>

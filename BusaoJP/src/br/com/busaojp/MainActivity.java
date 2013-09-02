@@ -7,27 +7,26 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import br.com.busaojp.utils.ActivityUtil;
 
 public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
-	Resources resources;
 	boolean select = false;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.main);  
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main); 
         
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        pref.registerOnSharedPreferenceChangeListener(this);
-    }
+		pref.registerOnSharedPreferenceChangeListener(this);
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,13 +35,14 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
         return true;
     }
     
-    public void onResume(){
-        if(select){
+    @Override
+	public void onResume(){
+    	super.onResume();
+		if(select){
         	finish();
 		    startActivity(getIntent());
 		    select = false;
         }
-        super.onResume();
     }
     
     public void trataMenu(View v) {
@@ -69,7 +69,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
     	}
     }
     
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
     	
         if (item.getItemId() == R.id.config) {
             ActivityUtil.mudarActivity(this, BusaoPreferences.class);
@@ -81,84 +82,109 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
      
         return super.onOptionsItemSelected(item);
     }
-
-	@Override
+    
 	public void onSharedPreferenceChanged(SharedPreferences pref, String key) {
 		SharedPreferences settings = this.getSharedPreferences("fonte" , 0);
 		SharedPreferences.Editor ed = settings.edit();
-		ed.clear();
+		
+		if(key.equals("fonte")){
 	 		
-			if(key.equals("fonte")){
-				Button i = (Button)findViewById(R.id.button_terminal);
-		 		Button i2 = (Button)findViewById(R.id.button_pesquisar);
-		 		Button i3 = (Button)findViewById(R.id.button_paradas);
-		 		Button i4 = (Button)findViewById(R.id.button_favoritos);
-		 		
-				if(pref.getString(key, "14").equals("12")){
-				 i.setTextSize(12);
-		       	 i2.setTextSize(12);
-		       	 i3.setTextSize(12);
-		       	 i4.setTextSize(12);
-		       	ed.putString("fonte", "12");
-		       	 
-
-				}
-				if(pref.getString(key, "14").equals("14")){
-		       	 i.setTextSize(14);
-		       	 i2.setTextSize(14);
-		       	 i3.setTextSize(14);
-		       	 i4.setTextSize(14);
-		       	ed.putString("fonte", "14");
-
-		        }
-				if(pref.getString(key, "14").equals("16")){
-		       	 i.setTextSize(16);
-		       	 i2.setTextSize(16);
-		       	 i3.setTextSize(16);
-		       	 i4.setTextSize(16);
-		       	ed.putString("fonte", "16");
-		       	
-
-		        }
-				
-				if(pref.getString(key, "14").equals("18")){
-			     i.setTextSize(18);
-			     i2.setTextSize(18);
-			     i3.setTextSize(18);
-			     i4.setTextSize(18);
-			     ed.putString("fonte", "18");
-			     
-			    }
-				return;
+			if(pref.getString(key, "14").equals("12")){
+				setFonte(12);
 			}
+			if(pref.getString(key, "14").equals("14")){
+				setFonte(14);
+	       	}
+			if(pref.getString(key, "14").equals("16")){
+				setFonte(16);
+	       	 }
 			
-			settings = this.getSharedPreferences("idioma" , 0);
-			ed = settings.edit();
-			
-			if(key.equals("idioma")){
-				Configuration config = new Configuration(getResources().getConfiguration());
-				if(pref.getString(key, "portugues").equals("portugues")){
-				    config.locale = Locale.ROOT;
-				    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
-				    select = true;
-				    ed.putString("idioma", "portugues");
-				 
-				    return;
-				}
-				if(pref.getString(key, "portugues").equals("ingles")){
-				    config.locale = Locale.ENGLISH ;
-				    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
-				    select = true;
-				    ed.putString("idioma", "ingles");
-				    
-				    return;
-					
-				}
-			}
-			
-		ed.commit();		
-			}
-			
-			
+			if(pref.getString(key, "14").equals("18")){
+				setFonte(18);
+		    }
 		}
+		
+		ed.commit();
+		if(key.equals("idioma")){
+			Configuration config = new Configuration(getResources().getConfiguration());
+			if(pref.getString(key, "portugues").equals("portugues")){
+			    config.locale = Locale.ROOT;
+			    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
+			 select = true;
+			}
+			if(pref.getString(key, "portugues").equals("ingles")){
+			    config.locale = Locale.ENGLISH ;
+			    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
+			  select = true;  
+				
+			}
+		}
+		
+		ed = settings.edit();
+		
+		if(key.equals("background")){   //não funciona :(
+			if(pref.getBoolean("background", false) == true){
+				setBackgroundChecked();
+			}
+		else{
+				setBackgroundUnchecked();
+			}
+		}
+		ed.commit();
+}
+
+
+	public void setFonte(int tamanho){ 
+	Button i = (Button)findViewById(R.id.button_terminal);
+	Button i2 = (Button)findViewById(R.id.button_pesquisar);
+	Button i3 = (Button)findViewById(R.id.button_paradas);
+	Button i4 = (Button)findViewById(R.id.button_favoritos);
+	
+     i.setTextSize(tamanho);
+  	 i2.setTextSize(tamanho);
+  	 i3.setTextSize(tamanho);
+  	 i4.setTextSize(tamanho);
+	}
+
+	public void setBackgroundChecked(){
+       /* LinearLayout l = (LinearLayout)findViewById(R.id.LinearLayoutRotas);
+		LinearLayout l2 = (LinearLayout)findViewById(R.id.LinearLayoutFavoritos);
+		LinearLayout l3 = (LinearLayout)findViewById(R.id.LinearLayoutHorario);
+		LinearLayout l4 = (LinearLayout)findViewById(R.id.LinearLayoutItinerario);*/
+		LinearLayout l5 = (LinearLayout)findViewById(R.id.LinearLayoutMain);
+		/*LinearLayout l6 = (LinearLayout)findViewById(R.id.LinearLayoutOnibus);
+		LinearLayout l7 = (LinearLayout)findViewById(R.id.LinearLayoutParadas);
+		LinearLayout l8 = (LinearLayout)findViewById(R.id.LinearLayoutPesquisa);*/
+		
+			
+			l5.setBackgroundResource(R.drawable.altbackground);
+			/*l2.setBackgroundResource(R.drawable.altbackground);
+			l3.setBackgroundResource(R.drawable.altbackground);
+			l4.setBackgroundResource(R.drawable.altbackground);
+			l5.setBackgroundResource(R.drawable.altbackground);
+			/*l6.setBackgroundResource(R.drawable.altbackground);
+			l7.setBackgroundResource(R.drawable.altbackground);
+			l8.setBackgroundResource(R.drawable.altbackground);*/
+	}
+	
+	public void setBackgroundUnchecked(){
+        /*LinearLayout l = (LinearLayout)findViewById(R.id.LinearLayoutRotas);
+		LinearLayout l2 = (LinearLayout)findViewById(R.id.LinearLayoutFavoritos);
+		LinearLayout l3 = (LinearLayout)findViewById(R.id.LinearLayoutHorario);
+		LinearLayout l4 = (LinearLayout)findViewById(R.id.LinearLayoutItinerario);*/
+		LinearLayout l5 = (LinearLayout)findViewById(R.id.LinearLayoutMain);
+		/*LinearLayout l6 = (LinearLayout)findViewById(R.id.LinearLayoutOnibus);
+		LinearLayout l7 = (LinearLayout)findViewById(R.id.LinearLayoutParadas);
+		LinearLayout l8 = (LinearLayout)findViewById(R.id.LinearLayoutPesquisa);*/
+		
+		l5.setBackgroundResource(R.drawable.fundo);
+		/*l2.setBackgroundResource(R.drawable.fundo);
+		l3.setBackgroundResource(R.drawable.fundo);
+		l4.setBackgroundResource(R.drawable.fundo);
+		l5.setBackgroundResource(R.drawable.fundo);
+		l6.setBackgroundResource(R.drawable.fundo);
+		l7.setBackgroundResource(R.drawable.fundo);
+		l8.setBackgroundResource(R.drawable.fundo);*/
+	}
+}
     

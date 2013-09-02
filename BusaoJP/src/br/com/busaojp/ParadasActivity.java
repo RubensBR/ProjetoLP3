@@ -49,7 +49,8 @@ public class ParadasActivity extends FragmentActivity{
 		return true;
 	}
 	
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.config) {
             ActivityUtil.mudarActivity(this, BusaoPreferences.class);
             return true;
