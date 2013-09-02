@@ -3,8 +3,6 @@ package br.com.busaojp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import br.com.busaojp.utils.ActivityUtil;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -12,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import br.com.busaojp.utils.ActivityUtil;
 
 public class FavoritosActivity extends Activity{
 	
@@ -30,6 +29,7 @@ public class FavoritosActivity extends Activity{
 		lista.addAll(Arrays.asList(res));
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.favoritos_listview, lista);
 		mListView.setAdapter(arrayAdapter);
+		
 	}
 
 	@Override
@@ -51,4 +51,5 @@ public class FavoritosActivity extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-}
+}		
+	

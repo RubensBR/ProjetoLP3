@@ -47,7 +47,7 @@
     <string name="dialogTitle">Select Language</string>
     <string name="dialogFonte">Select the Font Size</string>
     <string name="fonte">Font Size</string>
-    <string name="summary_fonte">Select the desired Font Size</string>
+    <string name="summary_fonte">Select the desired Font Size for the Main Menu</string>
     <string name="musica">Music</string>
     <string name="summary_musica">Check if you want the music to play</string>
     

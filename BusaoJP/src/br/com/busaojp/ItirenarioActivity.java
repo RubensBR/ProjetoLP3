@@ -20,7 +20,7 @@ import br.com.busaojp.onibus.OnibusDAOJSON;
 import br.com.busaojp.rotamaps.RotaMaps;
 import br.com.busaojp.utils.ActivityUtil;
 
-public class ItirenarioActivity extends Activity {
+public class ItirenarioActivity extends Activity{
 	
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;

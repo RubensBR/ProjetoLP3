@@ -2,8 +2,6 @@ package br.com.busaojp;
 
 import java.util.ArrayList;
 
-import br.com.busaojp.utils.ActivityUtil;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -11,8 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import br.com.busaojp.utils.ActivityUtil;
 
-public class HorarioActivity extends Activity {
+public class HorarioActivity extends Activity{
 
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;
@@ -39,6 +38,7 @@ public class HorarioActivity extends Activity {
 		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
+
 	}
 
 	@Override
@@ -59,5 +59,6 @@ public class HorarioActivity extends Activity {
      
         return super.onOptionsItemSelected(item);
     }
+
 }
 

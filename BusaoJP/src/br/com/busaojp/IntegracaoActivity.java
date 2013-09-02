@@ -1,19 +1,17 @@
 package br.com.busaojp;
 
-import br.com.busaojp.utils.ActivityUtil;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import br.com.busaojp.utils.ActivityUtil;
 
 public class IntegracaoActivity extends FragmentActivity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.integracao);
-    
+		setContentView(R.layout.integracao);    
     }
         
 	

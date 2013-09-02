@@ -31,12 +31,13 @@ public class PesquisarActivity extends Activity {
 	private ProgressDialog mProgress;
 	private EditText mEditor;
 	private RadioGroup mRadioGroup;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pesquisar);
-		
+        
 		mListView = (ListView) findViewById(R.id.resultado_busca);
 		mRadioGroup = (RadioGroup) findViewById(R.id.radiobutton_pesquisar);
 		mEditor = (EditText) findViewById(R.id.search);
