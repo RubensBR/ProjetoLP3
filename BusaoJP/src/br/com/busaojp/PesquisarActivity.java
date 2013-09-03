@@ -63,14 +63,6 @@ public class PesquisarActivity extends Activity {
 		operacao.execute(opcao);		
 	}
 	
-	public void imprime(String msg) {
-		AlertDialog.Builder popup = new AlertDialog.Builder(PesquisarActivity.this);
-		popup.setTitle("DEBUG");
-		popup.setMessage(msg);
-		popup.setPositiveButton("Ok", null);
-		popup.show();
-	}
-	
 	private class TrataItemSelecionado implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {			
