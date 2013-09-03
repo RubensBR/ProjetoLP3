@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import br.com.busaojp.utils.ActivityUtil;
 
@@ -32,6 +33,10 @@ public class HorarioActivity extends Activity{
 		if (parametros != null) {
 			lista = parametros.getStringArrayList("horarios");
 		}
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutHorario);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
 

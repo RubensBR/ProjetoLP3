@@ -18,8 +18,10 @@ import br.com.busaojp.utils.Operacoes;
 
 public class OnibusDAOJSON implements OnibusDAO {
 
-	private final String ENDERECO = "http://192.168.0.34:8080/ServidorBusaoJP/Servidor";
-
+	//private final String ENDERECO = "http://192.168.0.34:8080/ServidorBusaoJP/Servidor";
+	private final String ENDERECO = "http://192.168.0.11:8080/ServidorBusaoJP/Servidor";
+	//private final String ENDERECO = "http://192.168.0.12:8080/ServidorBusaoJP/Servidor";
+	
 	@Override
 	public ArrayList<Onibus> lista() {		
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();

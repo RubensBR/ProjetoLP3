@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import busao.jp.utils.LeitorKml;
-import busao.jp.utils.Marcador;
 import busao.jp.utils.Posicao;
 import busao.jp.utils.RotaMapeada;
 import busaojp.onibus.Onibus;

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import br.com.busaojp.onibus.OnibusDAOJSON;
@@ -27,6 +28,9 @@ public class LoginActivity extends Activity {
 		mLogin = (EditText) findViewById(R.id.edit_login);
 		mSenha = (EditText) findViewById(R.id.edit_senha);
 		mRGroup = (RadioGroup) findViewById(R.id.radiobutton_login);
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutLogin);
+		BusaoPreferences.backgroundPreferencia(layout, this);
 	}
 
 	public void enviar(View v) {
@@ -38,7 +42,7 @@ public class LoginActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
+		getMenuInflater().inflate(R.menu.preferencias, menu);
 		return true;
 	}
 	

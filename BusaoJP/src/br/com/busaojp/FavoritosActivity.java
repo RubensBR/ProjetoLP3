@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -55,6 +56,10 @@ public class FavoritosActivity extends Activity {
 				return teste;				
 			}
 		});
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutFavoritos);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+		
 		if (mProgress != null)
 			mProgress.cancel();
 		ListarAsync listar = new ListarAsync();

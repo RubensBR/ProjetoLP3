@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,9 @@ public class ItirenarioActivity extends Activity {
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		System.out.println("== volta main: " + onibus.getRota().getVolta().size());
 		mListView.setAdapter(arrayAdapter);
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutItinerario);
+		BusaoPreferences.backgroundPreferencia(layout, this);
 		
 	}
 	

@@ -26,6 +26,9 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
         
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 		pref.registerOnSharedPreferenceChangeListener(this);
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutMain);
+		BusaoPreferences.backgroundPreferencia(layout, this);
 	}
 
     @Override

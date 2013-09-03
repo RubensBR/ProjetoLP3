@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -52,8 +55,14 @@ public class PesquisarActivity extends Activity {
 			}
 		});
 		
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutPesquisa);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+		
 		ListarAsync listar = new ListarAsync();
 		listar.execute();
+		
+		
 	}
 	
 	public void realizarBusca() {

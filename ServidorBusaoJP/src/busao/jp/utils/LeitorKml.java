@@ -12,7 +12,9 @@ public class LeitorKml {
 	public static final String IDA = "_ida";
 	public static final String VOLTA = "_volta";
 
-	private final String CAMINHO = "C:\\Users\\JSN-BIA\\Videos\\bia\\Projects\\Busao_JP\\ProjetoLP3\\ServidorBusaoJP\\resources";
+	//private final String CAMINHO = "C:\\Users\\JSN-BIA\\Videos\\bia\\Projects\\Busao_JP\\ProjetoLP3\\ServidorBusaoJP\\resources";
+	//private final String CAMINHO = "C:\\Desenvolvedor\\ProjetoLP3\\ServidorBusaoJP\\resources\\";
+	private final String CAMINHO = "C:\\Users\\Rubens\\Documents\\GitHub\\ProjetoLP3\\ServidorBusaoJP\\resources\\";
 	
 	public RotaMapeada pegarRotaMapeada(String linha, String sentido) {		
 		
@@ -76,12 +78,14 @@ public class LeitorKml {
 							sc.close();
 						}
 					}
-				}
-			}		 		
+				}				
+			}	
+			rd.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
+		
 		return new RotaMapeada(rota, marcadores);
 	}
 

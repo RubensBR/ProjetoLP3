@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import br.com.busaojp.onibus.OnibusDAOJSON;
 import br.com.busaojp.rotamaps.Parada;
@@ -64,7 +65,10 @@ public class ParadasActivity extends FragmentActivity {
         	gm.addMarker(new MarkerOptions().position(posicao).title("Você está aqui!"));    
         }
         
-        new ListarParadasTask().execute();
+        LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutParadas);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+		
+        new ListarParadasTask().execute();        
 	}
 	
 	
