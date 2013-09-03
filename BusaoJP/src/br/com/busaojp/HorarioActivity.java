@@ -24,9 +24,7 @@ public class HorarioActivity extends Activity{
 		setContentView(R.layout.horario);
 		
 		mListView = (ListView) findViewById(R.id.horarios_listview);
-		
-		
-		
+
 		ArrayList<String> lista = new ArrayList<String>();
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
@@ -34,8 +32,7 @@ public class HorarioActivity extends Activity{
 			lista = parametros.getStringArrayList("horarios");
 		}
 		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutHorario);
-		BusaoPreferences.backgroundPreferencia(layout, this);
+		setBackground();
 		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
@@ -50,6 +47,7 @@ public class HorarioActivity extends Activity{
     
 	public void onResume(){
 		Music.play(this, R.raw.tar);
+		setBackground();
 		super.onResume();
 	}
 	
@@ -72,6 +70,11 @@ public class HorarioActivity extends Activity{
      
         return super.onOptionsItemSelected(item);
     }
+    
+	public void setBackground(){
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutHorario);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+	}
 
 }
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import br.com.busaojp.onibus.OnibusDAOJSON;
@@ -29,8 +28,6 @@ public class LoginActivity extends Activity {
 		mSenha = (EditText) findViewById(R.id.edit_senha);
 		mRGroup = (RadioGroup) findViewById(R.id.radiobutton_login);
 		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutLogin);
-		BusaoPreferences.backgroundPreferencia(layout, this);
 	}
 
 	public void enviar(View v) {

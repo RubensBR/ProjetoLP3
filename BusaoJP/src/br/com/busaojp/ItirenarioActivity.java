@@ -46,15 +46,12 @@ public class ItirenarioActivity extends Activity {
 		}		
 		
 		mListView = (ListView) findViewById(R.id.lista_rota);
+		setBackground();
 		
 		ArrayList<String> lista = onibus.getRota().getIda();		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		System.out.println("== volta main: " + onibus.getRota().getVolta().size());
-		mListView.setAdapter(arrayAdapter);
-		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutItinerario);
-		BusaoPreferences.backgroundPreferencia(layout, this);
-		
+		mListView.setAdapter(arrayAdapter);		
 	}
 	
 	public void verIda(View v) {
@@ -79,6 +76,7 @@ public class ItirenarioActivity extends Activity {
     
 	public void onResume(){
       Music.play(this, R.raw.tar);
+      setBackground();
       super.onResume();
 	}
 	
@@ -200,4 +198,10 @@ public class ItirenarioActivity extends Activity {
      
         return super.onOptionsItemSelected(item);
     }
+    
+    public void setBackground(){		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutItinerario);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+    }
+    
 }

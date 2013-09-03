@@ -35,6 +35,13 @@
     <!-- RotasActivity -->
     <string name="Marcar_parada">Mark Bus Stop</string>
     <string name="title_activity_rotas">Routes</string>
+    
+    <!-- LoginActivity -->
+    <string name="title_activity_login">Login</string>
+    <string name="login">Login</string>
+    <string name="senha">Password</string>
+    <string name="cadastro">Register</string>
+    <string name="enviar">Send</string>
    
     <!-- Preferencias -->
     <string name="title_activity_preferencias">Preferences</string>
