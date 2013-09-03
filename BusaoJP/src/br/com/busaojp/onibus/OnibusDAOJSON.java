@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.com.busaojp.rotamaps.Marcador;
+import br.com.busaojp.rotamaps.Parada;
 import br.com.busaojp.rotamaps.Posicao;
 import br.com.busaojp.rotamaps.RotaMapeada;
 import br.com.busaojp.rotamaps.RotaMaps;
@@ -18,7 +19,7 @@ import br.com.busaojp.utils.Operacoes;
 public class OnibusDAOJSON implements OnibusDAO {
 
 	private final String ENDERECO = "http://192.168.0.14:8080/ServidorBusaoJP/Servidor";
-	
+
 	@Override
 	public ArrayList<Onibus> lista() {		
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();
@@ -112,7 +113,7 @@ public class OnibusDAOJSON implements OnibusDAO {
 				itinerario.addRotaIda(rotaIda);
 				itinerario.addRotaVolta(rotaVolta);
 				Onibus onibus = new Onibus(linha, nome, itinerario, hrs);				
-				lista.add(onibus);
+				lista.add(onibus);				
 			}
 			
 		} catch (JSONException e) {
@@ -192,4 +193,88 @@ public class OnibusDAOJSON implements OnibusDAO {
 		}
 	}
 	
+	public boolean salvarParada(Posicao pos) {
+		try {
+			 HttpUtil.urlContentPost(ENDERECO, "operacao", ""+Operacoes.SALVAR_PARADA, 
+					"latitude", ""+pos.getLatitude(), "longitude", ""+pos.getLongitude());			 
+		} catch (ClientProtocolException e) {			
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} 
+		System.out.println("== salvar ok");
+		return true;
+	}
+	
+	public Parada pegarParadas() {
+		Parada paradas = new Parada();
+		try {
+			String s = HttpUtil.urlContentPost(ENDERECO, "operacao", ""+Operacoes.GET_PARADAS);			
+			JSONObject json = new JSONObject(s);
+			JSONArray ar = json.getJSONArray("paradas");
+			for (int i = 0; i < ar.length(); ++i) {
+				JSONObject parada = ar.getJSONObject(i);
+				double latitude = parada.getDouble("latitude");
+				double longitude = parada.getDouble("longitude");
+				paradas.getParadas().add(new Posicao(latitude, longitude));
+			}
+			return paradas;
+			
+		} catch (ClientProtocolException e) {			
+			e.printStackTrace();	
+			return paradas;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return paradas;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return paradas;
+		}
+	}
+	
+	public int FazerLogin(String login, String senha) {
+		try {
+			String s = HttpUtil.urlContentPost(ENDERECO, "operacao", ""+Operacoes.LOGIN, "login", login, "senha", senha);
+			JSONObject json = new JSONObject(s);
+			boolean sucesso = json.getBoolean("sucesso");
+			if (sucesso) {
+				return 0;
+			} else {
+				return 1;
+			}			
+		} catch (ClientProtocolException e) {			
+			e.printStackTrace();
+			return 2;
+		} catch (IOException e) {			
+			e.printStackTrace();
+			return 2;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
+	public int CadastrarUsuario(String login, String senha) {
+		try {
+			String s = HttpUtil.urlContentPost(ENDERECO, "operacao", ""+Operacoes.CADASTRO, "login", login, "senha", senha);
+			JSONObject json = new JSONObject(s);
+			boolean sucesso = json.getBoolean("sucesso");
+			if (sucesso) {
+				return 0;
+			} else {
+				return 1;
+			}	
+		} catch (ClientProtocolException e) {			
+			e.printStackTrace();
+			return 2;
+		} catch (IOException e) {			
+			e.printStackTrace();
+			return 2;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return 2;
+		}
+	}
 }

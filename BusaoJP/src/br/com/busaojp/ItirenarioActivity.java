@@ -14,9 +14,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import br.com.busaojp.onibus.Onibus;
 import br.com.busaojp.onibus.OnibusDAO;
 import br.com.busaojp.onibus.OnibusDAOJSON;
+import br.com.busaojp.onibus.OnibusDAOSQL;
 import br.com.busaojp.rotamaps.RotaMaps;
 import br.com.busaojp.utils.ActivityUtil;
 
@@ -26,6 +28,7 @@ public class ItirenarioActivity extends Activity {
 	private ArrayAdapter<String> arrayAdapter;
 	private ProgressDialog mProgress;
 	private Onibus onibus;
+	private boolean pegarDadosLocal;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +38,33 @@ public class ItirenarioActivity extends Activity {
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		if (parametros != null) {
-			onibus = (Onibus) parametros.getSerializable("onibus");
+			onibus = (Onibus) parametros.getSerializable("onibus");			
+			pegarDadosLocal = parametros.getBoolean("pegarDadosLocal");
 			TextView textView = (TextView) findViewById(R.id.onibus_title);
 			textView.setText(onibus.getLinha() + " - " + onibus.getNome());			
 		}		
 		
-		mListView = (ListView) findViewById(R.id.lista_rota);		
-		ArrayList<String> lista = new ArrayList<String>();
+		mListView = (ListView) findViewById(R.id.lista_rota);
 		
-		for (int i = 1; i <= 20; ++i) {
-			String s = "Rua número " + i;
-			lista.add(s);
-		}
+		ArrayList<String> lista = onibus.getRota().getIda();		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
+		System.out.println("== volta main: " + onibus.getRota().getVolta().size());
 		mListView.setAdapter(arrayAdapter);
 		
+	}
+	
+	public void verIda(View v) {
+		ArrayList<String> lista = onibus.getRota().getIda();		
+		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
+		mListView.setAdapter(arrayAdapter);
+		Toast.makeText(this, "Rota de ida", Toast.LENGTH_SHORT).show();
+	}
+	
+	public void verVolta(View v) {
+		ArrayList<String> lista = onibus.getRota().getVolta();		
+		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
+		mListView.setAdapter(arrayAdapter);
+		Toast.makeText(this, "Rota de volta", Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
@@ -64,16 +79,45 @@ public class ItirenarioActivity extends Activity {
 	}
 	
 	public void mostraHorarios(View v) {
-		ActivityUtil.mudarActivity(this, HorarioActivity.class);
+		Bundle parametros = new Bundle();
+		
+		if (pegarDadosLocal)
+			parametros.putStringArrayList("horarios", pegarHorariosDoBancoDeDados());
+		else 
+			parametros.putStringArrayList("horarios", onibus.getHorarios());
+		ActivityUtil.mudarActivity(this, HorarioActivity.class, parametros);
 	}
 	
-	public void verRota(View v) {
-		//new PegaRotaTask().execute(onibus.getLinha());
-		new PegaRotaTask().execute("1502");
+	public void verRota(View v) {		
+		if (pegarDadosLocal) {
+			pegarRotaDoBancoDeDados();
+		} else {
+			new PegaRotaTask().execute("1502");
+			//new PegaRotaTask().execute(onibus.getLinha());
+		}
 	}
 	
-	public void verFavoritos(View v) {
-		ActivityUtil.mudarActivity(this, FavoritosActivity.class);
+	private ArrayList<String> pegarHorariosDoBancoDeDados() {
+		mProgress = ProgressDialog.show(ItirenarioActivity.this, "Aguarde", "Carregando Rota", true);
+		OnibusDAOSQL onibusBD = new OnibusDAOSQL(ItirenarioActivity.this);
+		ArrayList<String> horarios = onibusBD.getHorarios(onibus.getLinha());
+		mProgress.cancel();
+		return horarios;
+	}
+	
+	private void pegarRotaDoBancoDeDados() {
+		mProgress = ProgressDialog.show(ItirenarioActivity.this, "Aguarde", "Carregando Rota", true);
+		OnibusDAOSQL onibusBD = new OnibusDAOSQL(ItirenarioActivity.this);
+		RotaMaps rota = onibusBD.buscaRotaMaps(onibus.getLinha());
+		mProgress.cancel();
+		Bundle parametro = new Bundle();
+		parametro.putSerializable("rota", rota);
+		ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
+	}
+	
+	public void adicionaFavoritos(View v) {
+		PegaRotaTask salvar = new PegaRotaTask(false);
+		salvar.execute("1502");
 	}
 
 	@Override
@@ -86,9 +130,19 @@ public class ItirenarioActivity extends Activity {
 	private class PegaRotaTask extends AsyncTask<String, String, RotaMaps> {
 		private OnibusDAO dao;
 		
+		private boolean mudarActivity = true;
+		
+		public PegaRotaTask() {}
+		public PegaRotaTask(boolean mudarActivity) {
+			this.mudarActivity = mudarActivity;
+		}
+		
 		@Override
 		protected void onPreExecute() {
-			mProgress = ProgressDialog.show(ItirenarioActivity.this, "Aguarde", "Acessando o banco de dados remoto.", true);
+			String mensagem = "Acessando o banco de dados remoto.";
+			if (!mudarActivity)
+				mensagem = "Recuperando dados do servidor para salvar";
+			mProgress = ProgressDialog.show(ItirenarioActivity.this, "Aguarde", mensagem, true);
 		}
 		
 		@Override
@@ -109,12 +163,26 @@ public class ItirenarioActivity extends Activity {
 				popup.show();
 				return;
 			}			
-			
-			Bundle parametro = new Bundle();
-			parametro.putSerializable("rota", rota);
-			ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
+			if (mudarActivity) {
+				Bundle parametro = new Bundle();
+				parametro.putSerializable("rota", rota);
+				ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
+			}
+			else {
+				onibus.setRotaMaps(rota);
+				OnibusDAOSQL onibusBD = new OnibusDAOSQL(ItirenarioActivity.this);
+				boolean sucesso = onibusBD.salvarOnibus(onibus);
+				if (sucesso) {
+					Toast.makeText(ItirenarioActivity.this, 
+							"Esta linha foi adicionada aos favoritos com sucesso.", Toast.LENGTH_SHORT).show();					
+				} else {
+					Toast.makeText(ItirenarioActivity.this, 
+							"Esta linha já está em seus favoritos.", Toast.LENGTH_SHORT).show();
+				}
+			}
 		}
-	}
+	} 
+
 	
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -3,6 +3,7 @@ package br.com.busaojp;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,19 +24,14 @@ public class HorarioActivity extends Activity{
 		
 		mListView = (ListView) findViewById(R.id.horarios_listview);
 		
+		
+		
 		ArrayList<String> lista = new ArrayList<String>();
-		
-		for (int i = 0; i < 24; ++i) {
-			if (i < 10) {
-				lista.add("0" + i + ":00");
-				lista.add("0" + i + ":30");
-			}
-			else {
-				lista.add(i + ":00");
-				lista.add(i + ":30");
-			}
+		Intent activity = getIntent();
+		Bundle parametros = activity.getExtras();
+		if (parametros != null) {
+			lista = parametros.getStringArrayList("horarios");
 		}
-		
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
 

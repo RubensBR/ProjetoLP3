@@ -63,20 +63,13 @@ public class PesquisarActivity extends Activity {
 		operacao.execute(opcao);		
 	}
 	
-	public void imprime(String msg) {
-		AlertDialog.Builder popup = new AlertDialog.Builder(PesquisarActivity.this);
-		popup.setTitle("DEBUG");
-		popup.setMessage(msg);
-		popup.setPositiveButton("Ok", null);
-		popup.show();
-	}
-	
 	private class TrataItemSelecionado implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {			
 			Bundle parametro = new Bundle();
 			Onibus onibus = (Onibus) parent.getItemAtPosition(position);
 			parametro.putSerializable("onibus", onibus);
+			parametro.putBoolean("pegarDadosLocal", false);
 			ActivityUtil.mudarActivity(PesquisarActivity.this, ItirenarioActivity.class, parametro);
 		}		
 	}
@@ -100,8 +93,7 @@ public class PesquisarActivity extends Activity {
 		protected ArrayList<Onibus> doInBackground(String... params) {
 			dao = new OnibusDAOJSON();
 			ArrayList<Onibus> lista = dao.lista();
-			return lista;
-			
+			return lista;			
 		}
 		
 		@Override
@@ -163,7 +155,7 @@ public class PesquisarActivity extends Activity {
 				return;
 			}			
 			
-			mListView.setAdapter(new OnibusListAdapter(lista, PesquisarActivity.this));
+			mListView.setAdapter(new OnibusListAdapter(lista, PesquisarActivity.this));			
 			mListView.setOnItemClickListener(new TrataItemSelecionado());			
 		}
 	}

@@ -41,16 +41,7 @@ public class Servidor extends HttpServlet {
 		ArrayList<Onibus> onibus = onibusDAO.lista();
 		JSONArray jsonArray = new JSONArray(onibus);
 		out.println(jsonArray.toString());
-		System.out.println("Resposta enviada");
-		
-		
-		
-		/*PrintWriter out = response.getWriter();
-		RotaMaps rota = pegarRotaMaps("1502");
-		JSONObject json = new JSONObject(rota);
-		out.println(json.toString()); 
-		System.out.println(json.toString());*/
-		
+		System.out.println("Resposta enviada");			
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,47 +72,54 @@ public class Servidor extends HttpServlet {
 				RotaMaps rota = pegarRotaMaps(request.getParameter("busca"));
 				JSONObject json = new JSONObject(rota);
 				out.println(json.toString()); 
-				System.out.println("tamanho: " + json.toString().length());
+				System.out.println("tamanho: " + json.toString().length());				
+				break;
 				
+			case Operacoes.SALVAR_PARADA:
+				double latitude = Double.parseDouble(request.getParameter("latitude"));
+				double longitude = Double.parseDouble(request.getParameter("longitude"));
+				ParadasRepositorio.getParadas().add(new Posicao(latitude, longitude));
+				System.out.println("Latitude, Longitude: " + latitude + ", " + longitude);
+				break;
+			
+			case Operacoes.GET_PARADAS:
+				JSONObject jsonParadas = new JSONObject(new ParadasRepositorio());
+				out.println(jsonParadas.toString());
+				System.out.println("get_paradas: " + jsonParadas.toString());
+				break;
+				
+			case Operacoes.LOGIN:
+				ValidacaoLogin valida = new ValidacaoLogin();
+				valida.validarLogin(request.getParameter("login"), request.getParameter("senha"));
+				JSONObject jsonSucesso = new JSONObject(valida);
+				out.println(jsonSucesso.toString());
+				System.out.println("login: " + jsonSucesso.toString());
+				break;
+				
+			case Operacoes.CADASTRO:
+				String login = request.getParameter("login");
+				String senha = request.getParameter("senha");
+				ArrayList<Usuario> usuarios = UsuarioRepositorio.getUsuarios();
+				boolean teste = false;
+				for (Usuario usr : usuarios) {
+					if (usr.getLogin().equals(login)) {						
+						teste = true;
+						break;
+					}
+				}
+				if (teste) {
+					out.println("{\"sucesso\":false}");
+				} else {
+					usuarios.add(new Usuario(login, senha));
+					out.println("{\"sucesso\":true}");
+				}
 				break;
 		}
-		System.out.println("Resposta post enviada");
-		
+		System.out.println("Resposta post enviada");		
 	}
 	
 	public RotaMaps pegarRotaMaps(String linha) {
-		RotaMapeada ida = new LeitorKml().pegarRotaMapeada(linha, LeitorKml.IDA);
-		//RotaMapeada volta = new LeitorKml().pegarRotaMapeada("linha", LeitorKml.VOLTA);
-		//RotaMapeada volta = new RotaMapeada(new ArrayList<Posicao>(), new ArrayList<Marcador>());		
-		/*try {
-			JSONObject j1 = json.getJSONObject("volta");
-			JSONArray rota = j1.getJSONArray("rota");
-			for (int i = 0; i < rota.length(); ++i) {
-				JSONObject posicao = rota.getJSONObject(i);
-			}
-			JSONArray marcadores = j1.getJSONArray("marcadores");
-			for (int i = 0; i < marcadores.length(); ++i) {
-				JSONObject marcador = marcadores.getJSONObject(i);
-				JSONObject marcadorPosicao = marcador.getJSONObject("posicao");
-				
-			}			
-			
-			JSONObject j2 = json.getJSONObject("ida");
-			JSONArray rota2 = j2.getJSONArray("rota");
-			for (int i = 0; i < rota2.length(); ++i) {
-				JSONObject posicao = rota2.getJSONObject(i);
-			}		
-			
-			marcadores = j2.getJSONArray("marcadores");
-			for (int i = 0; i < marcadores.length(); ++i) {
-				JSONObject marcador = marcadores.getJSONObject(i);
-				JSONObject marcadorPosicao = marcador.getJSONObject("posicao");				
-			}
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		RotaMapeada ida = new LeitorKml().pegarRotaMapeada(linha, LeitorKml.IDA);		
 		return new RotaMaps(ida, ida);
 	}
 	

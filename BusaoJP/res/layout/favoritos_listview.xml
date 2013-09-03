@@ -1,8 +1,24 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
- android:id="@+id/rowTextView" 
- android:layout_width="match_parent" 
- android:layout_height="wrap_content"
- android:padding="10dp"
- android:textSize="16sp"
- android:drawableRight="@android:drawable/ic_delete">
-</TextView>
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    
+	<ImageView
+            android:layout_width="23sp"
+            android:layout_height="23sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@android:drawable/btn_star_big_on" />
+
+	<TextView
+	    android:id="@+id/linha_nome_favorito"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center|center_horizontal"
+	    android:layout_weight="1"
+	    android:text="202 - Geisel"
+	    android:textSize="20sp" />
+</LinearLayout>

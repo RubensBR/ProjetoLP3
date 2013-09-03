@@ -28,13 +28,21 @@
     <string name="title_activity_integracao">Terminal de Integração</string>
     <string name="title_activity_itinerario">Itinerário</string>
     <string name="hello_world">Hello world!</string>
-    
+
     <!-- HorarioActivity -->
     <string name="title_activity_horario">Horário</string>
 
     <!-- RotasActivity -->
     <string name="Marcar_parada">Marcar Parada</string>
     <string name="title_activity_rotas">Rotas</string>
+    
+    
+    <!-- LoginActivity -->
+    <string name="title_activity_login">Login</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="cadastro">Cadastrar</string>
+    <string name="enviar">Enviar</string>
    
     <!-- Preferencias -->
     <string name="title_activity_preferencias">Preferências</string>
@@ -52,6 +60,5 @@
     <string name="summary_musica">Marque se desejar que a música seja ativada</string>
     <string name="bg">Plano de Fundo</string>
     <string name="summary_bg">Marque se desejar a outra opção de plano de fundo</string>
-    
-    
+
 </resources>

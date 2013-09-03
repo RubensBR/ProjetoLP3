@@ -40,25 +40,27 @@
         android:orientation="horizontal" >
         
         <Button
-        android:id="@+id/ida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ida"
-        android:layout_weight="1" />
+	        android:id="@+id/ida"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:onClick="verIda"
+	        android:text="@string/ida"
+	        android:layout_weight="1" />
         
         <Button
-        android:id="@+id/volta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/volta" 
-       	android:layout_weight="1" /> 
+	        android:id="@+id/volta"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:onClick="verVolta"
+	        android:text="@string/volta" 
+	       	android:layout_weight="1" /> 
     </LinearLayout>
 
     
     <ListView 
         android:id="@+id/lista_rota"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="#FFECECEC"
         android:dividerHeight="2sp"
@@ -82,7 +84,7 @@
             android:id="@+id/imageButton1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:onClick="verFavoritos"
+            android:onClick="adicionaFavoritos"
             android:src="@android:drawable/btn_star_big_on" />
 
         <ImageButton

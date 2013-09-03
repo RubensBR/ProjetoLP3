@@ -3,14 +3,29 @@ package br.com.busaojp.onibus;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Onibus implements Serializable {
+import br.com.busaojp.rotamaps.RotaMaps;
 
-	private static final long serialVersionUID = 1519181079526438484L;
+public class Onibus implements Serializable {
 	
+	private static final long serialVersionUID = -2525266224550789952L;
 	private String linha;
 	private String nome;
 	private Rota rota;
 	private ArrayList<String> horarios;
+	private RotaMaps rotaMaps;
+	
+	public RotaMaps getRotaMaps() {
+		return rotaMaps;
+	}
+
+	public void setRotaMaps(RotaMaps rotaMaps) {
+		this.rotaMaps = rotaMaps;
+	}
+
+	public Onibus(String linha, String nome) {
+		this.linha = linha;
+		this.nome = nome;
+	}
 	
 	public Onibus(String linha, String nome, Rota rota, ArrayList<String> horarios) {
 		this.nome = nome;
