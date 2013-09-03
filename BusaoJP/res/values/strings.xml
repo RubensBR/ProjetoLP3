@@ -27,11 +27,19 @@
     <string name="title_activity_integracao">Terminal de Integração</string>
     <string name="title_activity_itinerario">Itinerário</string>
     <string name="hello_world">Hello world!</string>
-    
+
     <!-- HorarioActivity -->
     <string name="title_activity_horario">Horário</string>
 
     <!-- RotasActivity -->
     <string name="Marcar_parada">Marcar Parada</string>
     <string name="title_activity_rotas">Rotas</string>
+    <string name="title_activity_login">Login</string>
+    
+    <!-- LoginActivity -->
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="cadastro">Cadastrar</string>
+    <string name="enviar">Enviar</string>
+
 </resources>

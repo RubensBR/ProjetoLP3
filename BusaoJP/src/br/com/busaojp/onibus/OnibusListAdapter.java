@@ -14,10 +14,16 @@ public class OnibusListAdapter extends BaseAdapter {
 
 	private ArrayList<Onibus> lista;
 	private LayoutInflater layoutInflater;
+	private boolean favoritos = false;
 	
 	public OnibusListAdapter(ArrayList<Onibus> lista, Context context) {
 		this.lista = lista;
 		layoutInflater = LayoutInflater.from(context);
+	}
+	
+	public OnibusListAdapter(ArrayList<Onibus> lista, Context context, boolean favoritos) {
+		this(lista, context);
+		this.favoritos = favoritos;
 	}
 	
 	@Override
@@ -37,23 +43,36 @@ public class OnibusListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Holder holder;
-		if (convertView == null) {
-			convertView = layoutInflater.inflate(R.layout.onibus_listview, null);		
-			holder = new Holder();
-			holder.linhaNome = (TextView) convertView.findViewById(R.id.linha_nome);
-			convertView.setTag(holder);
-		}
-		else {
-			holder = (Holder) convertView.getTag();
-		}
-		Onibus onibus = lista.get(position);
-		holder.linhaNome.setText(onibus.getLinha() + " - " + onibus.getNome());
+		if (!favoritos) {
+			Holder holder;
+			if (convertView == null) {
+				convertView = layoutInflater.inflate(R.layout.onibus_listview, null);		
+				holder = new Holder();
+				holder.linhaNome = (TextView) convertView.findViewById(R.id.linha_nome);
+				convertView.setTag(holder);
+			} else {
+				holder = (Holder) convertView.getTag();
+			}
+			Onibus onibus = lista.get(position);
+			holder.linhaNome.setText(onibus.getLinha() + " - " + onibus.getNome());			
+		} else {
+			Holder holder;
+			if (convertView == null) {
+				convertView = layoutInflater.inflate(R.layout.favoritos_listview, null);
+				holder = new Holder();
+				holder.linhaNome = (TextView) convertView.findViewById(R.id.linha_nome_favorito);
+				convertView.setTag(holder);
+			} else {
+				holder = (Holder) convertView.getTag();				
+			}			
+			Onibus onibus = lista.get(position);
+			holder.linhaNome.setText(onibus.getLinha() + " - " + onibus.getNome());
+			
+		}	
 		return convertView;
 	}
 	
 	private class Holder {
 		TextView linhaNome;
 	}
-
 }

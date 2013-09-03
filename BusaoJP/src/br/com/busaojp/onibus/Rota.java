@@ -16,6 +16,11 @@ public class Rota implements Serializable {
 		volta = new ArrayList<String>();
 	}	
 	
+	public Rota(ArrayList<String> ida, ArrayList<String> volta) {
+		this.ida = ida;
+		this.volta = volta;
+	}
+	
 	public ArrayList<String> getIda() {
 		return ida;
 	}

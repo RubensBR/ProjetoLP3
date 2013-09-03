@@ -14,17 +14,30 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 public class HttpUtil {
 	
+	private static int timeout = 3000;
+	private static int soTimeout = 5000;
+	
 	public static String urlContentGet(String endereco) throws IOException, ClientProtocolException {
-		HttpClient client = new DefaultHttpClient();
+		HttpParams httpParametros = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParametros, timeout);
+		HttpConnectionParams.setSoTimeout(httpParametros, soTimeout);
+		
+		HttpClient client = new DefaultHttpClient(httpParametros);
 		HttpGet httpGet = new HttpGet(endereco);
 		ResponseHandler<String> handler = new BasicResponseHandler();
 		return (client.execute(httpGet, handler));
 	}
 	
 	public static String urlContentPost(String endereco, String... parametros) throws IOException, ClientProtocolException {
+		HttpParams httpParametros = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParametros, timeout);
+		HttpConnectionParams.setSoTimeout(httpParametros, soTimeout);		
 		
 		HttpClient client = new DefaultHttpClient();		
 		HttpPost httpPost = new HttpPost(endereco);		

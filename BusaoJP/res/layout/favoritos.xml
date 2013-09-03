@@ -10,39 +10,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".FavoritosActivity" >
 
-    <LinearLayout
-        android:id="@+id/Favoritos"
+    <RadioGroup
+        android:id="@+id/radiobutton_pesquisar_favoritos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp" >
+        android:gravity="center_horizontal">
+                
+	    <RadioButton
+	        android:id="@+id/linha_radioButton_favoritos"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/linha" 
+	        android:checked="true" />
+	
+	    <RadioButton
+	        android:id="@+id/logradouro_radioButton_favoritos"
+	        android:layout_marginLeft="20dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/logradouro" />
+    </RadioGroup>
 
-        <ImageView
-            android:id="@+id/estrela"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:src="@android:drawable/btn_star_big_on" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/favoritos"
-            android:layout_width="159dp"
+        <EditText
+            android:id="@+id/search_favoritos"            
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/favoritos"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
-        
+            android:layout_width="match_parent"
+            android:ems="10" 
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:hint="@string/pesquisar">
+        </EditText>
     </LinearLayout>
-    
-		<ListView 
-        android:id="@+id/lista_favoritos"
+	
+    <ListView
+        android:id="@+id/resultado_busca_favoritos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#FFECECEC"
-        android:dividerHeight="2sp"
-        android:background="@color/android:white"/>
-    
-
+        android:background="@color/android:white"
+        android:dividerHeight="2sp" 
+        android:longClickable="true"
+        android:clickable="true"/>
 </LinearLayout>
