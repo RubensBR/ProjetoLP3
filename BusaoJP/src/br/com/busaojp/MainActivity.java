@@ -82,7 +82,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
             ActivityUtil.mudarActivity(this, BusaoPreferences.class);
             return true;
         } else if (item.getItemId() == R.id.aboutUs) {
-        	new AlertDialog.Builder(this).setMessage("Este é um projeto desenvolvido para conclusão da disciplina Linguagens de Programação 3 (Android) na UFPB\n\n Equipe: Ana Beatrice Severo\n Carlos André Correia\n Rubens Correia").setTitle("About").setPositiveButton("Voltar", null).show();
+        	new AlertDialog.Builder(this).setMessage(R.string.descricao).setTitle(R.string.about).setPositiveButton("Voltar", null).show();
             return true;
         }
      
@@ -141,6 +141,48 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		else{
 				BusaoPreferences.setBackgroundUnchecked((LinearLayout)findViewById(R.id.LinearLayoutMain));
 			}
+		}
+		
+		if(key.equals("colorf")){
+			if(pref.getString(key, "preto").equals("preto")){
+				BusaoPreferences.setColorFonte("#000000", (Button)findViewById(R.id.button_terminal));
+				BusaoPreferences.setColorFonte("#000000", (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setColorFonte("#000000", (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setColorFonte("#000000", (Button)findViewById(R.id.button_pesquisar));
+			}
+			
+			if(pref.getString(key, "preto").equals("rosa")){
+				BusaoPreferences.setColorFonte("#FF1CAE", (Button)findViewById(R.id.button_terminal));
+				BusaoPreferences.setColorFonte("#FF1CAE", (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setColorFonte("#FF1CAE", (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setColorFonte("#FF1CAE", (Button)findViewById(R.id.button_pesquisar));
+							
+			}
+			
+			if(pref.getString(key, "preto").equals("azul")){
+				BusaoPreferences.setColorFonte("#38B0DE", (Button)findViewById(R.id.button_terminal));
+				BusaoPreferences.setColorFonte("#38B0DE", (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setColorFonte("#38B0DE", (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setColorFonte("#38B0DE", (Button)findViewById(R.id.button_pesquisar));
+				
+			}
+			
+			if(pref.getString(key, "preto").equals("verde")){
+				BusaoPreferences.setColorFonte("#238E23", (Button)findViewById(R.id.button_terminal));
+				BusaoPreferences.setColorFonte("#238E23", (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setColorFonte("#238E23", (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setColorFonte("#238E23", (Button)findViewById(R.id.button_pesquisar));
+				
+			}
+			
+			if(pref.getString(key, "preto").equals("vermelho")){
+				BusaoPreferences.setColorFonte("#FF0000", (Button)findViewById(R.id.button_terminal));
+				BusaoPreferences.setColorFonte("#FF0000", (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setColorFonte("#FF0000", (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setColorFonte("#FF0000", (Button)findViewById(R.id.button_pesquisar));
+				
+			}
+			
 		}
 	}
 }

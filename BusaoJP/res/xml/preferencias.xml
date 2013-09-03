@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        
+   <PreferenceCategory
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:key="categoria_geral"
+		android:title="@string/PfGeral"
+		>
+   
     <ListPreference 
         android:key="idioma"
         android:title="@string/idioma"
         android:summary="@string/summary_idioma"
       	android:entries="@array/listIdiomas"
       	android:entryValues="@array/opcoesIdiomas"
-		android:dialogTitle="@string/dialogTitle"
+		android:dialogTitle="@string/dialogTitle"/>
+    
+    <CheckBoxPreference 
+        android:key="music"
+        android:title="@string/musica"
+        android:summary="@string/summary_musica"/>
+    
+    </PreferenceCategory>   
 		
-		        />
-    <ListPreference
+    <PreferenceCategory
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:key="categoria_mp"
+		android:title="@string/PfMenuPrincipal"
+		>
+		
+   <ListPreference
         android:key="fonte"
         android:title="@string/fonte"
         android:summary="@string/summary_fonte"
       	android:entries="@array/listFonte"
       	android:entryValues="@array/opcoesFonte"
-		android:dialogTitle="@string/dialogFonte"
-        
-        
-        />
-    <CheckBoxPreference 
-        android:key="music"
-        android:title="@string/musica"
-        android:summary="@string/summary_musica"
-        />
-
-    <CheckBoxPreference 
+		android:dialogTitle="@string/dialogFonte"/>
+   
+   <ListPreference
+        android:key="colorf"
+        android:title="@string/corFonte"
+        android:summary="@string/summary_corFonte"
+      	android:entries="@array/listCFonte"
+      	android:entryValues="@array/opcoesCFonte"
+		android:dialogTitle="@string/dialogCFonte"/>
+   
+   <CheckBoxPreference 
         android:key="background"
         android:title="@string/bg"
-        android:summary="@string/summary_bg"
-        />
-    
-    
-    
-		
+        android:summary="@string/summary_bg"/>
+   
+   </PreferenceCategory>
+
 </PreferenceScreen>

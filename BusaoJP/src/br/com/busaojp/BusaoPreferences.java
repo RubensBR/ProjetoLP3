@@ -1,6 +1,7 @@
 package br.com.busaojp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -29,6 +30,10 @@ public class BusaoPreferences extends PreferenceActivity {
 	
 	public static void setFonte(int tamanho, Button b){ 
 		b.setTextSize(tamanho);  	 
+	}
+	
+	public static void setColorFonte(String cor, Button b){ 
+		b.setTextColor(Color.parseColor(cor));  	 
 	}
 	
     protected void onPause() {

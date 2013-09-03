@@ -40,6 +40,8 @@
     <string name="title_activity_preferencias">Preferences</string>
     <string name="equipe">Team</string>
     <string name="conf">Settings</string>
+    <string name="about">About the Project</string>
+    <string name="descricao">This is a project developed for the completion of the course Programming Languages ​​3 (Android) at UFPB\n\n Team: Ana Beatrice Severo\n Carlos André Correia\n Rubens Correia"</string>
     <string name="idioma">Language</string>
     <string name="summary_idioma">Select the desired language for the application</string>
     <string name="portugues">Portuguese</string>
@@ -52,6 +54,11 @@
     <string name="summary_musica">Check if you want the music to play</string>
     <string name="bg">Background</string>
     <string name="summary_bg">Check if you want to change the background picture</string>
+    <string name="corFonte">Font Color</string>
+    <string name="summary_corFonte">Select the desired Font Color for the Main Menu</string>
+    <string name="dialogCFonte">Select the Font Color</string>
+    <string name="PfMenuPrincipal">Main Menu Preferences</string>
+    <string name="PfGeral">General Preferences</string>
     
     
 </resources>
