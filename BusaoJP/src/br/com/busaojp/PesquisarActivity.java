@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -35,7 +36,7 @@ public class PesquisarActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pesquisar);
-		
+        
 		mListView = (ListView) findViewById(R.id.resultado_busca);
 		mRadioGroup = (RadioGroup) findViewById(R.id.radiobutton_pesquisar);
 		mEditor = (EditText) findViewById(R.id.search);
@@ -84,7 +85,7 @@ public class PesquisarActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.pesquisar, menu);
+		getMenuInflater().inflate(R.menu.preferencias, menu);
 		return true;
 	}
 	
@@ -167,4 +168,28 @@ public class PesquisarActivity extends Activity {
 		}
 	}
 
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.config) {
+            ActivityUtil.mudarActivity(this, BusaoPreferences.class);
+            return true;
+        } else if (item.getItemId() == R.id.aboutUs) {
+        	new AlertDialog.Builder(this).setMessage("Este é um projeto desenvolvido para conclusão da disciplina Linguagens de Programação 3 (Android) na UFPB\n\n Equipe: Ana Beatrice Severo\n Carlos André Correia\n Rubens Correia").setTitle("About").setPositiveButton("Voltar", null).show();
+            return true;
+        }
+     
+        return super.onOptionsItemSelected(item);
+    }
+    
+      @Override
+      protected void onPause() {
+        super.onPause();
+        Music.stop(this);
+      }
+      
+	public void onResume(){
+        Music.play(this, R.raw.tar);
+		super.onResume();
+    }
+		
 }

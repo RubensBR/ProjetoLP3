@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ListPreference 
+        android:key="idioma"
+        android:title="@string/idioma"
+        android:summary="@string/summary_idioma"
+      	android:entries="@array/listIdiomas"
+      	android:entryValues="@array/opcoesIdiomas"
+		android:dialogTitle="@string/dialogTitle"
+		
+		        />
+    <ListPreference
+        android:key="fonte"
+        android:title="@string/fonte"
+        android:summary="@string/summary_fonte"
+      	android:entries="@array/listFonte"
+      	android:entryValues="@array/opcoesFonte"
+		android:dialogTitle="@string/dialogFonte"
+        
+        
+        />
+    <CheckBoxPreference 
+        android:key="music"
+        android:title="@string/musica"
+        android:summary="@string/summary_musica"
+        />
+
+    <CheckBoxPreference 
+        android:key="background"
+        android:title="@string/bg"
+        android:summary="@string/summary_bg"
+        />
+    
+    
+    
+		
+</PreferenceScreen>

@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -28,7 +29,7 @@ import br.com.busaojp.onibus.OnibusListAdapter;
 import br.com.busaojp.onibus.Rota;
 import br.com.busaojp.utils.ActivityUtil;
 
-public class FavoritosActivity extends Activity{
+public class FavoritosActivity extends Activity {
 	
 	private ListView mListView;
 	private ProgressDialog mProgress;
@@ -39,7 +40,7 @@ public class FavoritosActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.favoritos);
-		
+
 		mListView = (ListView) findViewById(R.id.resultado_busca_favoritos);
 		mRadioGroup = (RadioGroup) findViewById(R.id.radiobutton_pesquisar_favoritos);
 		mEditor = (EditText) findViewById(R.id.search_favoritos);
@@ -79,15 +80,14 @@ public class FavoritosActivity extends Activity{
 			parametro.putSerializable("onibus", onibus);
 			parametro.putBoolean("pegarDadosLocal", true);
 			mProgress.cancel();
-			ActivityUtil.mudarActivity(FavoritosActivity.this, ItirenarioActivity.class, parametro);
-			
+			ActivityUtil.mudarActivity(FavoritosActivity.this, ItirenarioActivity.class, parametro);			
 		}		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.favoritos, menu);
+		getMenuInflater().inflate(R.menu.preferencias, menu);
 		return true;
 	}
 	
@@ -201,4 +201,29 @@ public class FavoritosActivity extends Activity{
 			}
 		}
 
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.config) {
+            ActivityUtil.mudarActivity(this, BusaoPreferences.class);
+            return true;
+        } else if (item.getItemId() == R.id.aboutUs) {
+        	new AlertDialog.Builder(this).setMessage("Este é um projeto desenvolvido para conclusão da disciplina Linguagens de Programação 3 (Android) na UFPB\n\n Equipe: Ana Beatrice Severo\n Carlos André Correia\n Rubens Correia").setTitle("About").setPositiveButton("Voltar", null).show();
+            return true;
+        }
+     
+        return super.onOptionsItemSelected(item);
+    }
+    
+	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+		Music.play(this, R.raw.tar);
+		super.onResume();
+	}
 }
+		
+	

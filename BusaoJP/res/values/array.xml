@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listIdiomas" >
+        <item >Português</item>
+        <item >Inglês</item>
+    </string-array>
+    
+    <string-array name="opcoesIdiomas" >
+        <item >portugues</item>
+        <item >ingles</item>
+    </string-array>
+    
+    <string-array name="listFonte" >
+        <item >12</item>
+        <item >14</item>
+        <item >16</item>
+        <item >18</item>
+    </string-array>
+    
+    <string-array name="opcoesFonte" >
+        <item >12</item>
+        <item >14</item>
+        <item >16</item>
+        <item >18</item>
+    </string-array>
+    
+</resources>
