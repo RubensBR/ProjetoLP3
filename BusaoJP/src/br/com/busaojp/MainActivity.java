@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import br.com.busaojp.utils.ActivityUtil;
 
 public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
-	boolean select = false;
+	public boolean select = false;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +35,21 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
         return true;
     }
     
-    @Override
+	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
 	public void onResume(){
-    	super.onResume();
+      Music.play(this, R.raw.tar);
+		super.onResume();
 		if(select){
-        	finish();
+			finish();
 		    startActivity(getIntent());
 		    select = false;
-        }
-    }
+		}
+	}
     
     public void trataMenu(View v) {
     	Button bt = (Button) v;
@@ -83,108 +89,59 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
         return super.onOptionsItemSelected(item);
     }
     
-	public void onSharedPreferenceChanged(SharedPreferences pref, String key) {
-		SharedPreferences settings = this.getSharedPreferences("fonte" , 0);
-		SharedPreferences.Editor ed = settings.edit();
-		
+	public void onSharedPreferenceChanged(SharedPreferences pref, String key) {		
 		if(key.equals("fonte")){
 	 		
 			if(pref.getString(key, "14").equals("12")){
-				setFonte(12);
+				BusaoPreferences.setFonte(12, (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setFonte(12, (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setFonte(12, (Button)findViewById(R.id.button_pesquisar));
+				BusaoPreferences.setFonte(12, (Button)findViewById(R.id.button_terminal));
+				
 			}
 			if(pref.getString(key, "14").equals("14")){
-				setFonte(14);
+				BusaoPreferences.setFonte(14, (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setFonte(14, (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setFonte(14, (Button)findViewById(R.id.button_pesquisar));
+				BusaoPreferences.setFonte(14, (Button)findViewById(R.id.button_terminal));
 	       	}
 			if(pref.getString(key, "14").equals("16")){
-				setFonte(16);
+				BusaoPreferences.setFonte(16, (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setFonte(16, (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setFonte(16, (Button)findViewById(R.id.button_pesquisar));
+				BusaoPreferences.setFonte(16, (Button)findViewById(R.id.button_terminal));
 	       	 }
 			
 			if(pref.getString(key, "14").equals("18")){
-				setFonte(18);
+				BusaoPreferences.setFonte(18, (Button)findViewById(R.id.button_favoritos));
+				BusaoPreferences.setFonte(18, (Button)findViewById(R.id.button_paradas));
+				BusaoPreferences.setFonte(18, (Button)findViewById(R.id.button_pesquisar));
+				BusaoPreferences.setFonte(18, (Button)findViewById(R.id.button_terminal));
 		    }
 		}
 		
-		ed.commit();
 		if(key.equals("idioma")){
 			Configuration config = new Configuration(getResources().getConfiguration());
 			if(pref.getString(key, "portugues").equals("portugues")){
 			    config.locale = Locale.ROOT;
-			    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
-			 select = true;
+			    getResources().updateConfiguration(config,getResources().getDisplayMetrics());  
+			    select = true;
 			}
 			if(pref.getString(key, "portugues").equals("ingles")){
 			    config.locale = Locale.ENGLISH ;
 			    getResources().updateConfiguration(config,getResources().getDisplayMetrics());
-			  select = true;  
-				
+			    select = true;
 			}
 		}
 		
-		ed = settings.edit();
-		
-		if(key.equals("background")){   //não funciona :(
+		if(key.equals("background")){
 			if(pref.getBoolean("background", false) == true){
-				setBackgroundChecked();
+				BusaoPreferences.setBackgroundChecked((LinearLayout)findViewById(R.id.LinearLayoutMain));
 			}
 		else{
-				setBackgroundUnchecked();
+				BusaoPreferences.setBackgroundUnchecked((LinearLayout)findViewById(R.id.LinearLayoutMain));
 			}
 		}
-		ed.commit();
-}
-
-
-	public void setFonte(int tamanho){ 
-	Button i = (Button)findViewById(R.id.button_terminal);
-	Button i2 = (Button)findViewById(R.id.button_pesquisar);
-	Button i3 = (Button)findViewById(R.id.button_paradas);
-	Button i4 = (Button)findViewById(R.id.button_favoritos);
-	
-     i.setTextSize(tamanho);
-  	 i2.setTextSize(tamanho);
-  	 i3.setTextSize(tamanho);
-  	 i4.setTextSize(tamanho);
-	}
-
-	public void setBackgroundChecked(){
-       /* LinearLayout l = (LinearLayout)findViewById(R.id.LinearLayoutRotas);
-		LinearLayout l2 = (LinearLayout)findViewById(R.id.LinearLayoutFavoritos);
-		LinearLayout l3 = (LinearLayout)findViewById(R.id.LinearLayoutHorario);
-		LinearLayout l4 = (LinearLayout)findViewById(R.id.LinearLayoutItinerario);*/
-		LinearLayout l5 = (LinearLayout)findViewById(R.id.LinearLayoutMain);
-		/*LinearLayout l6 = (LinearLayout)findViewById(R.id.LinearLayoutOnibus);
-		LinearLayout l7 = (LinearLayout)findViewById(R.id.LinearLayoutParadas);
-		LinearLayout l8 = (LinearLayout)findViewById(R.id.LinearLayoutPesquisa);*/
-		
-			
-			l5.setBackgroundResource(R.drawable.altbackground);
-			/*l2.setBackgroundResource(R.drawable.altbackground);
-			l3.setBackgroundResource(R.drawable.altbackground);
-			l4.setBackgroundResource(R.drawable.altbackground);
-			l5.setBackgroundResource(R.drawable.altbackground);
-			/*l6.setBackgroundResource(R.drawable.altbackground);
-			l7.setBackgroundResource(R.drawable.altbackground);
-			l8.setBackgroundResource(R.drawable.altbackground);*/
-	}
-	
-	public void setBackgroundUnchecked(){
-        /*LinearLayout l = (LinearLayout)findViewById(R.id.LinearLayoutRotas);
-		LinearLayout l2 = (LinearLayout)findViewById(R.id.LinearLayoutFavoritos);
-		LinearLayout l3 = (LinearLayout)findViewById(R.id.LinearLayoutHorario);
-		LinearLayout l4 = (LinearLayout)findViewById(R.id.LinearLayoutItinerario);*/
-		LinearLayout l5 = (LinearLayout)findViewById(R.id.LinearLayoutMain);
-		/*LinearLayout l6 = (LinearLayout)findViewById(R.id.LinearLayoutOnibus);
-		LinearLayout l7 = (LinearLayout)findViewById(R.id.LinearLayoutParadas);
-		LinearLayout l8 = (LinearLayout)findViewById(R.id.LinearLayoutPesquisa);*/
-		
-		l5.setBackgroundResource(R.drawable.fundo);
-		/*l2.setBackgroundResource(R.drawable.fundo);
-		l3.setBackgroundResource(R.drawable.fundo);
-		l4.setBackgroundResource(R.drawable.fundo);
-		l5.setBackgroundResource(R.drawable.fundo);
-		l6.setBackgroundResource(R.drawable.fundo);
-		l7.setBackgroundResource(R.drawable.fundo);
-		l8.setBackgroundResource(R.drawable.fundo);*/
 	}
 }
     

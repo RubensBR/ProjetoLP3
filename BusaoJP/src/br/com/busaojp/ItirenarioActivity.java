@@ -20,7 +20,7 @@ import br.com.busaojp.onibus.OnibusDAOJSON;
 import br.com.busaojp.rotamaps.RotaMaps;
 import br.com.busaojp.utils.ActivityUtil;
 
-public class ItirenarioActivity extends Activity{
+public class ItirenarioActivity extends Activity {
 	
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;
@@ -50,6 +50,17 @@ public class ItirenarioActivity extends Activity{
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
 		
+	}
+	
+	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+      Music.play(this, R.raw.tar);
+      super.onResume();
 	}
 	
 	public void mostraHorarios(View v) {
@@ -117,5 +128,4 @@ public class ItirenarioActivity extends Activity{
      
         return super.onOptionsItemSelected(item);
     }
-
 }

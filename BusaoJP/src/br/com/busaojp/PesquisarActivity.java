@@ -31,7 +31,6 @@ public class PesquisarActivity extends Activity {
 	private ProgressDialog mProgress;
 	private EditText mEditor;
 	private RadioGroup mRadioGroup;
-
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -181,4 +180,16 @@ public class PesquisarActivity extends Activity {
      
         return super.onOptionsItemSelected(item);
     }
+    
+      @Override
+      protected void onPause() {
+        super.onPause();
+        Music.stop(this);
+      }
+      
+	public void onResume(){
+        Music.play(this, R.raw.tar);
+		super.onResume();
+    }
+		
 }

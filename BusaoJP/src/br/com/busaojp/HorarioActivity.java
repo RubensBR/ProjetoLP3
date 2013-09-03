@@ -42,6 +42,17 @@ public class HorarioActivity extends Activity{
 	}
 
 	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+		Music.play(this, R.raw.tar);
+		super.onResume();
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.preferencias, menu);

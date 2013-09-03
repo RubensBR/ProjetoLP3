@@ -69,6 +69,17 @@ public class RotasActivity extends FragmentActivity {
         
 	}
 	
+	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+		Music.play(this, R.raw.tar);
+		super.onResume();
+	}
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -92,5 +103,4 @@ public class RotasActivity extends FragmentActivity {
      
         return super.onOptionsItemSelected(item);
     }
-    
 }

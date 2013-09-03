@@ -16,7 +16,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class ParadasActivity extends FragmentActivity{
+public class ParadasActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,17 @@ public class ParadasActivity extends FragmentActivity{
 	}
 
 	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+		Music.play(this, R.raw.tar);
+		super.onResume();
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.preferencias, menu);
@@ -61,5 +72,4 @@ public class ParadasActivity extends FragmentActivity{
      
         return super.onOptionsItemSelected(item);
     }
-
 }

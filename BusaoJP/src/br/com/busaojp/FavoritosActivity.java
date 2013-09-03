@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import br.com.busaojp.utils.ActivityUtil;
 
-public class FavoritosActivity extends Activity{
+public class FavoritosActivity extends Activity {
 	
 	private ListView mListView;
 	private ArrayAdapter<String> arrayAdapter;
@@ -51,6 +51,17 @@ public class FavoritosActivity extends Activity{
      
         return super.onOptionsItemSelected(item);
     }
-
-}		
+    
+	@Override
+    protected void onPause() {
+      super.onPause();
+      Music.stop(this);
+    }
+    
+	public void onResume(){
+		Music.play(this, R.raw.tar);
+		super.onResume();
+	}
+}
+		
 	
