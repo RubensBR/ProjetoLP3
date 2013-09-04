@@ -133,10 +133,6 @@ public class OnibusDAOSQL implements OnibusDAO {
 		return lista;
 	}
 	
-	public void adicionarFavoritos(Onibus onibus) {
-		
-	}
-	
 	public boolean salvarOnibus(Onibus onibus) {
 		SQLiteDatabase sql = bd.getWritableDatabase();
 		Onibus teste = getOnibus(onibus.getLinha());
@@ -286,9 +282,21 @@ public class OnibusDAOSQL implements OnibusDAO {
 	}
 
 	@Override
-	public ArrayList<Onibus> buscaPorLogradouro(String linha) {
+	public ArrayList<Onibus> buscaPorLogradouro(String logradouro) {
+		SQLiteDatabase sql = bd.getWritableDatabase();
+		String consulta = "SELECT DISTINCT itinerario.linha, onibus.nome FROM onibus, itinerario " +
+				"WHERE itinerario.logradouro = '@logradouro' AND itinerario.linha = onibus.linha";
+		consulta = consulta.replace("@logradouro", logradouro);
 		
-		return null;
+		ArrayList<Onibus> res = new ArrayList<Onibus>();
+		Cursor cursor = sql.rawQuery(consulta, null);
+		
+		while (cursor.moveToNext()) {
+			String linha = cursor.getString(cursor.getColumnIndex(LINHA));
+			String nome = cursor.getString(cursor.getColumnIndex(NOME));
+			res.add(new Onibus(linha, nome));
+		}
+		return res;
 	}
 
 	@Override

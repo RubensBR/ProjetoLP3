@@ -17,7 +17,7 @@ public class BusaoPreferences extends PreferenceActivity {
 	}
 	
 	public static boolean getMusic(Context context) {
-	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("music", true);
+	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("music", false);
 	}
 	
 	public static void setFonte(int tamanho, Button b){ 
@@ -33,7 +33,7 @@ public class BusaoPreferences extends PreferenceActivity {
 	}
 	
 	public static boolean BackgroundCheck(Context ctx){
-		return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("background", true);
+		return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("background", false);
 	}
 	
 	public static String corFontePreferencia(Context ctx){

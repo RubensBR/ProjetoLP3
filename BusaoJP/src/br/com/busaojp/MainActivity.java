@@ -2,6 +2,7 @@ package br.com.busaojp;
 
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
@@ -14,8 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import br.com.busaojp.utils.ActivityUtil;
+import br.com.busaojp.utils.TemperaturaTask;
 
+@SuppressLint("NewApi")
 public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
 	public boolean select = false;
 	
@@ -31,7 +35,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 		pref.registerOnSharedPreferenceChangeListener(this);
 		
-		
+		TextView texto = (TextView) findViewById(R.id.temperatura);
+		new TemperaturaTask(texto).execute();
 	}
 
     @Override

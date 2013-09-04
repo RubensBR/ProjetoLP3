@@ -64,6 +64,14 @@
             android:layout_height="wrap_content"
             android:text="@string/terminal_integracao"
             android:onClick="trataMenu" />
+
+        <TextView
+            android:id="@+id/temperatura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         
     </LinearLayout>
 
