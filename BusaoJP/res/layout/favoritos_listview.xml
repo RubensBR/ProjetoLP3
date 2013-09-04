@@ -19,6 +19,5 @@
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center|center_horizontal"
 	    android:layout_weight="1"
-	    android:text="202 - Geisel"
 	    android:textSize="20sp" />
 </LinearLayout>

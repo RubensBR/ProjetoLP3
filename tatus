@@ -1,0 +1,315 @@
+[33mcommit 2285bc03dd45aaec86ddab80129c2c1a02337807[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Tue Sep 3 22:10:41 2013 -0300
+
+    programmable web + content provider + correcoes
+
+[33mcommit 6da1536a70f1f6e482b5a39c0cf13363971fd60e[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Tue Sep 3 18:49:46 2013 -0300
+
+    consertando as preferencias
+
+[33mcommit cce66851ab2e8a247879a770b4712b0acdf2c9af[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Tue Sep 3 09:34:02 2013 -0300
+
+    background alternativo em todas as telas
+
+[33mcommit 966f6255f88e22a915623b39c8d5d565fdc7a797[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Tue Sep 3 01:15:51 2013 -0300
+
+    preferencia 5 e alteracoes
+
+[33mcommit 1247cfebbf66928c6e963e06c1e8ae6059d59bf3[m
+Merge: 7ebc4f2 f6092a1
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Tue Sep 3 00:03:17 2013 -0300
+
+    consertando conflito
+
+[33mcommit 7ebc4f20b29d0a0b800b129d9a95ffd1990b26ba[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Mon Sep 2 23:56:28 2013 -0300
+
+    servidor
+
+[33mcommit f6092a1419fdd067986a9c30d00110b64c6d5cdb[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Mon Sep 2 23:42:15 2013 -0300
+
+    conflitos resolvidos
+
+[33mcommit a8eb36459bdc89d80a5ffa9d65d54a8d9982cad9[m
+Merge: 66ca40d 996ef31
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Mon Sep 2 23:05:00 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+    
+    Conflicts:
+    	BusaoJP/AndroidManifest.xml
+    	BusaoJP/res/layout/itirenario.xml
+    	BusaoJP/res/values/strings.xml
+    	BusaoJP/src/br/com/busaojp/FavoritosActivity.java
+    	BusaoJP/src/br/com/busaojp/HorarioActivity.java
+    	BusaoJP/src/br/com/busaojp/ItirenarioActivity.java
+    	BusaoJP/src/br/com/busaojp/ParadasActivity.java
+
+[33mcommit 66ca40d7d2c5a8099c0b06bd258a6fe5190f60db[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Mon Sep 2 22:51:29 2013 -0300
+
+    login + operacoes remotas e locais + atualizacao servidor + atualizacoes
+
+[33mcommit 996ef31425ef92a31f62fced63ff1854d0104e76[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Mon Sep 2 22:47:22 2013 -0300
+
+    preferencias 3 e 4 e alteracoes
+
+[33mcommit 80ca39d7106aff82f846be93db627ac19fd86c86[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Mon Sep 2 03:14:41 2013 -0300
+
+    alteracoes preferencias
+
+[33mcommit 46921ce2dc0b00ea52f10cbde4a6bd94740bd5d5[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Sun Sep 1 22:34:01 2013 -0300
+
+    Preferencia 2
+
+[33mcommit ab45cfe353f2dcc443358156b23e0a1ac442a39a[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Sun Sep 1 20:11:31 2013 -0300
+
+    preferencia 1
+
+[33mcommit 73e12de2f2fa129e388f608e4def14d6739323ce[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Sun Sep 1 01:03:10 2013 -0300
+
+    Mexendo nas preferencias
+
+[33mcommit a1357003722353189dd0e0d72f19cc7cd54e3e9e[m
+Merge: 2bc8327 3acfc30
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Wed Aug 28 19:12:02 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+
+[33mcommit 2bc8327bc55546c7fddea7532e0e0847607bb44f[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Wed Aug 28 19:11:21 2013 -0300
+
+    carregamento de rotas concluido
+
+[33mcommit 3acfc3091ce61d874c3f224850714bd67b8ed16c[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Tue Aug 27 19:49:16 2013 -0300
+
+    correcoes no servidor
+
+[33mcommit 8929838dd1e7fc646facd05f100d6629d3f88e41[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Tue Aug 27 15:53:28 2013 -0300
+
+    adicionado parte cliente do serividor, e aleteracoes feitas no servidor
+
+[33mcommit 59ea7e92eab153b43443c2167701c131d69415a2[m
+Merge: 62097ad 643828d
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Aug 25 10:59:11 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+
+[33mcommit 62097ad6e5415b24573fa8c8a913d274c59b83bc[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Aug 25 10:58:51 2013 -0300
+
+    atualizacao
+
+[33mcommit 643828dcd50b03fcf241f3a74670ee84588d35df[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 18:34:15 2013 -0300
+
+    servidor -> operacao listar ok
+
+[33mcommit f64aa0fdf85969acdb31450cd7b473aa87575805[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 15:15:03 2013 -0300
+
+    Servidor teste ok
+
+[33mcommit 53e0b89d779c7c6aedc779f8f4fed2af6f8010a8[m
+Merge: 6d051a8 a79cc40
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 12:48:07 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+
+[33mcommit a79cc406ec6b7525b70ef721ffc46a3d53417a54[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sat Aug 24 12:44:24 2013 -0300
+
+    atualizacao
+
+[33mcommit 6d051a81a9b9fc9f744ace231b24d558a4e0635e[m
+Merge: 00d5aab df58965
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 12:32:00 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+    
+    Conflicts:
+    	.gitignore
+    	BusaoJP/project.properties
+
+[33mcommit df589650d60eeed957de5166ccd6abaab52977d9[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sat Aug 24 12:25:07 2013 -0300
+
+    Servidor
+
+[33mcommit a2ac74b2d4ea8ee52b353d7391181a6d926bda73[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sat Aug 24 11:45:00 2013 -0300
+
+    atualizacao
+
+[33mcommit 00d5aab881e7f291916dc4c6cd56117a29850007[m
+Merge: 3dfdac2 3427608
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 10:48:15 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+    
+    Conflicts:
+    	BusaoJP/project.properties
+
+[33mcommit 3dfdac2742479c9f96352891bc1f8a5e94e6287f[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Sat Aug 24 10:37:21 2013 -0300
+
+    atualizacoes
+
+[33mcommit a44f35e64971e9bebb310e76dc7474895016cc7b[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Thu Aug 22 22:21:49 2013 -0300
+
+    atualizacoes
+
+[33mcommit 342760899294b5cc395e937c0b9f53a418f3e008[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Fri Jul 5 23:15:56 2013 -0300
+
+    alteracoes layout
+
+[33mcommit 47d817f90912d590868012dc39f6b42b338d4ff1[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Fri Jul 5 22:59:57 2013 -0300
+
+    atualizacao strings
+
+[33mcommit d34eda5ebfceff7828faaba9b3f866dcf84f8bb3[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Fri Jul 5 22:23:48 2013 -0300
+
+    novas navegacoes entre telas e inclusao da listviews
+
+[33mcommit 71d8f9dac04721f8bb745517ed5ef46448601ce5[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Fri Jul 5 22:41:15 2013 -0300
+
+    atualizacoes telas
+
+[33mcommit 50ef4186dd64c8331206cd54d6cbd1aac4e41190[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Fri Jul 5 16:27:31 2013 -0300
+
+    layout corrigido
+
+[33mcommit 9edaf23d1574016e0b72029414cc74dc57cc6202[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Fri Jul 5 15:32:41 2013 -0300
+
+    novas telas e atualizacoes
+
+[33mcommit e3989896c013cc6a715c63139ccc3a5ab1173048[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Fri Jul 5 00:22:47 2013 -0300
+
+    tela de pesquisar
+
+[33mcommit fdd8e5dd06aeaa5059778d09d1372e0db5b2e4be[m
+Author: Ana Beatrice <anabeatricesevero@gmail.com>
+Date:   Fri Jul 5 15:34:40 2013 -0300
+
+    atualizacao mapas
+
+[33mcommit a0a710f04a13c5494c1a041c8a23b2c7a1990f27[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Mon Jul 1 02:12:31 2013 -0300
+
+    adicionado acitivity em branco para Favoritos, Integracao e Paradas
+
+[33mcommit 5da4f08d59db6bcbcd203e06d9e45efc8554788a[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Jun 30 17:32:23 2013 -0300
+
+    adicionado tela inicial + pacote para os utilitarios + metodo para trocar de activity
+
+[33mcommit e5e96e7c4ad26a63df83beb33f504430f13fa295[m
+Merge: 90ffa95 7e3dd4b
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Jun 30 13:24:30 2013 -0300
+
+    Merge branch 'busaojp'
+    
+    Conflicts:
+    	.gitignore
+
+[33mcommit 90ffa95b54523ebb1a62f087c490c2d8be59c288[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Jun 30 13:23:25 2013 -0300
+
+    gitignore modificado
+
+[33mcommit 7e3dd4b19537b7c6e91693fe90f983875825069e[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Sun Jun 30 12:59:08 2013 -0300
+
+    projeto eclipse
+
+[33mcommit 1abbae30925a173c446e59f533d5671579601c4e[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Thu Jun 27 23:48:12 2013 -0300
+
+    atualizacao da descricao
+
+[33mcommit 424967e20beef4984adce7a925f46df8a412ad5e[m
+Merge: 3260ed1 c9bfc89
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Thu Jun 27 23:24:23 2013 -0300
+
+    Merge branch 'master' of https://github.com/RubensBR/ProjetoLP3
+
+[33mcommit 3260ed197bcf8290990ff1237b85d3df914ffb29[m
+Author: Rubens <rubens.jp.br@gmail.com>
+Date:   Thu Jun 27 23:24:11 2013 -0300
+
+    prototipo adicionado
+
+[33mcommit c9bfc8961f07424f7c1cefa811e74f947f86143a[m
+Author: Carlos <andre.jp.br@gmail.com>
+Date:   Thu Jun 27 23:12:32 2013 -0300
+
+    Arquivo descritivo
+
+[33mcommit 26075787f0b4be82af2e5f021c9dae94f53fa7d9[m
+Author: RubensBR <rubens.jp.br@gmail.com>
+Date:   Thu Jun 27 19:01:29 2013 -0700
+
+    Initial commit
