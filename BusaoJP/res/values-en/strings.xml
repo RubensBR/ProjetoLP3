@@ -35,6 +35,7 @@
     <!-- RotasActivity -->
     <string name="Marcar_parada">Mark Bus Stop</string>
     <string name="title_activity_rotas">Routes</string>
+    <string name="share">Share your search!</string>
     
     <!-- LoginActivity -->
     <string name="title_activity_login">Login</string>

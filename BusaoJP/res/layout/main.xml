@@ -72,6 +72,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"            
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
         
     </LinearLayout>
 

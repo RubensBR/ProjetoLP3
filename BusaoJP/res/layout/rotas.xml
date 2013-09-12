@@ -8,14 +8,16 @@
     android:orientation="vertical"
     tools:context=".RotasActivity" >
 
-    
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="418dp"
+        class="com.google.android.gms.maps.SupportMapFragment" />
 
-   <fragment
-       android:id="@+id/map"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"           
-       class="com.google.android.gms.maps.SupportMapFragment" />
-  
- 
+    <Button
+        android:id="@+id/facebook"
+        android:layout_width="151dp"
+        android:layout_height="match_parent"
+        android:text="@string/share" />
 
 </LinearLayout>

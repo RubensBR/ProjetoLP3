@@ -1,5 +1,11 @@
 package br.com.busaojp;
 
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.brickred.socialauth.android.SocialAuthError;
+import org.brickred.socialauth.android.SocialAuthListener;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +16,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 import br.com.busaojp.rotamaps.Marcador;
 import br.com.busaojp.rotamaps.Posicao;
 import br.com.busaojp.rotamaps.RotaMaps;
@@ -23,11 +33,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class RotasActivity extends FragmentActivity {
+	
+	SocialAuthAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rotas);
+		
+		Button fb = (Button)findViewById(R.id.facebook);
+		
+		adapter = new SocialAuthAdapter(new ResponseListener());
+		adapter.addProvider(Provider.FACEBOOK, R.drawable.facebook);
+		adapter.enable(fb);
 		
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
@@ -44,9 +62,7 @@ public class RotasActivity extends FragmentActivity {
         	options.add(new LatLng(pos.getLatitude(), pos.getLongitude()));
         
         gm.addPolyline(options);
-        LocationManager locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
-
-        
+        LocationManager locationManager = (LocationManager)getSystemService(LOCATION_SERVICE); 
 
     	LatLng posicao = new LatLng(rota.getIda().getRota().get(0).getLatitude(),
     			rota.getIda().getRota().get(0).getLongitude());
@@ -103,4 +119,60 @@ public class RotasActivity extends FragmentActivity {
      
         return super.onOptionsItemSelected(item);
     }
+    
+	private final class ResponseListener implements DialogListener {
+		@Override
+		public void onComplete(Bundle values) {
+			final String providerName = values.getString(SocialAuthAdapter.PROVIDER);
+			Toast.makeText(RotasActivity.this, "Conectado com " + providerName, Toast.LENGTH_LONG).show();
+
+			Button update = (Button) findViewById(R.id.facebook);
+			update.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					adapter.updateStatus("Estou pesquisando a rota do busão " + "*insira o nome do busão aqui*" + " no BusãoJP :)", new MessageListener(), false);
+				}
+			});
+
+		}
+
+		@Override
+		public void onError(SocialAuthError e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onCancel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onBack() {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+	private final class MessageListener implements SocialAuthListener<Integer> {
+		@Override
+		public void onExecute(String provider, Integer status) {
+			if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204)
+				Toast.makeText(RotasActivity.this, "Mensagem postada! :)", Toast.LENGTH_LONG).show();
+			else
+				Toast.makeText(RotasActivity.this, "Mensagem não postada! :(", Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onError(SocialAuthError e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}
+    
+  
 }

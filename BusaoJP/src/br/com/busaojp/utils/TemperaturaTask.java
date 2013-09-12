@@ -33,6 +33,7 @@ public class TemperaturaTask extends AsyncTask<String, String, String>{
 	@Override
 	protected void onPostExecute(String res) {
 		try {
+			
 			JSONObject json = new JSONObject(res);
 			JSONObject clima = json.getJSONObject("main");
 			String temperatura = clima.getString("temp_max");

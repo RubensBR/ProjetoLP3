@@ -36,6 +36,7 @@
     <!-- RotasActivity -->
     <string name="Marcar_parada">Marcar Parada</string>
     <string name="title_activity_rotas">Rotas</string>
+    <string name="share">Compartilhe sua pesquisa!</string>
     
     
     <!-- LoginActivity -->
