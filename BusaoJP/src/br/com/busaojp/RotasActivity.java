@@ -41,12 +41,6 @@ public class RotasActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rotas);
 		
-		Button fb = (Button)findViewById(R.id.facebook);
-		
-		adapter = new SocialAuthAdapter(new ResponseListener());
-		adapter.addProvider(Provider.FACEBOOK, R.drawable.facebook);
-		adapter.enable(fb);
-		
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		RotaMaps rota = (RotaMaps) parametros.getSerializable("rota");
@@ -82,6 +76,18 @@ public class RotasActivity extends FragmentActivity {
 			LatLng posicaoDispositivo = new LatLng(local.getLatitude(), local.getLatitude());
 			gm.addMarker(new MarkerOptions().position(posicaoDispositivo).title("Você está aqui!"));
 	    }
+		
+		Button fb = (Button)findViewById(R.id.facebook);
+        fb.setBackgroundResource(R.drawable.facebook);
+		adapter = new SocialAuthAdapter(new ResponseListener());
+		
+		fb.setOnClickListener(new OnClickListener() 
+	     {
+	        public void onClick(View v) 
+	        {
+	            adapter.authorize(RotasActivity.this, Provider.FACEBOOK);
+	        }
+	    });
         
 	}
 	
@@ -123,22 +129,13 @@ public class RotasActivity extends FragmentActivity {
 	private final class ResponseListener implements DialogListener {
 		@Override
 		public void onComplete(Bundle values) {
-			final String providerName = values.getString(SocialAuthAdapter.PROVIDER);
-			Toast.makeText(RotasActivity.this, "Conectado com " + providerName, Toast.LENGTH_LONG).show();
-
-			Button update = (Button) findViewById(R.id.facebook);
-			update.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					adapter.updateStatus("Estou pesquisando a rota do busão " + "*insira o nome do busão aqui*" + " no BusãoJP :)", new MessageListener(), false);
-				}
-			});
-
+			String provider = values.getString(SocialAuthAdapter.PROVIDER);
+			Toast.makeText(RotasActivity.this, "Conectado com " + provider, Toast.LENGTH_LONG).show();
+			adapter.updateStatus("Estou pesquisando a rota do busão " + "*insira o nome do busão aqui!*" + " no BusãoJP B|", new MessageListener(), false);
 		}
 
-		@Override
-		public void onError(SocialAuthError e) {
+		@Override 
+		public void onBack() {
 			// TODO Auto-generated method stub
 			
 		}
@@ -150,29 +147,33 @@ public class RotasActivity extends FragmentActivity {
 		}
 
 		@Override
-		public void onBack() {
+		public void onError(SocialAuthError error) {
 			// TODO Auto-generated method stub
 			
 		}
+
 	}
 
+	// To get status of message after authentication
 	private final class MessageListener implements SocialAuthListener<Integer> {
 		@Override
-		public void onExecute(String provider, Integer status) {
-			if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204)
-				Toast.makeText(RotasActivity.this, "Mensagem postada! :)", Toast.LENGTH_LONG).show();
+		public void onExecute(String provider, Integer t) {
+			Integer status = t;
+			if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204){
+				Toast.makeText(RotasActivity.this, "Mensagem postada no " + provider + "! :)", Toast.LENGTH_LONG).show();
+				}
 			else
 				Toast.makeText(RotasActivity.this, "Mensagem não postada! :(", Toast.LENGTH_LONG).show();
+			
+			adapter.signOut(provider);
 		}
 
 		@Override
-		public void onError(SocialAuthError e) {
+		public void onError(SocialAuthError arg0) {
 			// TODO Auto-generated method stub
 			
 		}
 
-
 	}
-    
-  
+     
 }

@@ -2,8 +2,6 @@ package br.com.busaojp;
 
 import java.util.Locale;
 
-import org.brickred.socialauth.android.SocialAuthAdapter;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +23,6 @@ import br.com.busaojp.utils.TemperaturaTask;
 @SuppressLint("NewApi")
 public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
 	public boolean select = false;
-	SocialAuthAdapter adapter;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,7 +211,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
     		}
         }		
     }
-
       
 }
     
