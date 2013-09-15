@@ -2,9 +2,9 @@ package br.com.busaojp;
 
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
-import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
 import org.brickred.socialauth.android.SocialAuthError;
 import org.brickred.socialauth.android.SocialAuthListener;
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+import br.com.busaojp.onibus.Onibus;
 import br.com.busaojp.rotamaps.Marcador;
 import br.com.busaojp.rotamaps.Posicao;
 import br.com.busaojp.rotamaps.RotaMaps;
@@ -34,7 +35,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class RotasActivity extends FragmentActivity {
 	
-	SocialAuthAdapter adapter;
+	private SocialAuthAdapter adapter;
+	private Onibus onibus;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,9 @@ public class RotasActivity extends FragmentActivity {
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		RotaMaps rota = (RotaMaps) parametros.getSerializable("rota");
-		
+
+		onibus = (Onibus) parametros.getSerializable("onibus");
+        
         SupportMapFragment Map = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         GoogleMap gm = Map.getMap();
         gm.setMyLocationEnabled(true);
@@ -79,7 +83,17 @@ public class RotasActivity extends FragmentActivity {
 		
 		Button fb = (Button)findViewById(R.id.facebook);
         fb.setBackgroundResource(R.drawable.facebook);
+        Button twitter = (Button)findViewById(R.id.twitter);
+        twitter.setBackgroundResource(R.drawable.twitter);
 		adapter = new SocialAuthAdapter(new ResponseListener());
+		
+		twitter.setOnClickListener(new OnClickListener() 
+	     {
+	        public void onClick(View v) 
+	        {
+	            adapter.authorize(RotasActivity.this, Provider.TWITTER);
+	        }
+	    });
 		
 		fb.setOnClickListener(new OnClickListener() 
 	     {
@@ -131,7 +145,8 @@ public class RotasActivity extends FragmentActivity {
 		public void onComplete(Bundle values) {
 			String provider = values.getString(SocialAuthAdapter.PROVIDER);
 			Toast.makeText(RotasActivity.this, "Conectado com " + provider, Toast.LENGTH_LONG).show();
-			adapter.updateStatus("Estou pesquisando a rota do busão " + "*insira o nome do busão aqui!*" + " no BusãoJP B|", new MessageListener(), false);
+			String nomeLinha = onibus.getLinha() + " - " + onibus.getNome();
+			adapter.updateStatus("Estou pesquisando a rota do busão " + nomeLinha + " no BusãoJP :)", new MessageListener(), false);
 		}
 
 		@Override 

@@ -114,6 +114,7 @@ public class ItirenarioActivity extends Activity {
 		mProgress.cancel();
 		Bundle parametro = new Bundle();
 		parametro.putSerializable("rota", rota);
+		parametro.putSerializable("onibus", onibus);
 		ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
 	}
 	
@@ -168,6 +169,7 @@ public class ItirenarioActivity extends Activity {
 			if (mudarActivity) {
 				Bundle parametro = new Bundle();
 				parametro.putSerializable("rota", rota);
+				parametro.putSerializable("onibus", onibus);
 				ActivityUtil.mudarActivity(ItirenarioActivity.this, RotasActivity.class, parametro);
 			}
 			else {
