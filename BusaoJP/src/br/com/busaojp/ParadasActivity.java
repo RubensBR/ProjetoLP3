@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import br.com.busaojp.onibus.OnibusDAOJSON;
@@ -46,8 +48,7 @@ public class ParadasActivity extends FragmentActivity {
 				if (!ativarMarcador)
 					return;
 				double latitude = point.latitude;
-				double longitude = point.longitude;
-				Toast.makeText(ParadasActivity.this, latitude + ", " + longitude, Toast.LENGTH_SHORT).show();				
+				double longitude = point.longitude;				
 				new SalvarParadaTask(latitude, longitude).execute();
 			}
 		});   
@@ -69,6 +70,18 @@ public class ParadasActivity extends FragmentActivity {
         new ListarParadasTask().execute();        
 	}
 	
+	public void ativarDesativarMarcaParada(View v) {
+		Button ativarDesativarButton = (Button) v;
+		if (ativarMarcador) {
+			ativarMarcador = false;
+			ativarDesativarButton.setText(R.string.adicionar_parada);
+		} else {
+			ativarMarcador = true;
+			ativarDesativarButton.setText("Cancelar");
+			Toast.makeText(this, "Clique na posição que está localizada a parada para salvá-la.",
+					Toast.LENGTH_LONG).show();
+		}
+	}
 	
 	@Override
     protected void onPause() {
