@@ -1,21 +1,24 @@
 package br.com.busaojp;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.StringTokenizer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import br.com.busaojp.utils.ActivityUtil;
 
 public class HorarioActivity extends Activity{
 
-	private ListView mListView;
+	private ListView mListView;	
 	private ArrayAdapter<String> arrayAdapter;
 	
 	@Override
@@ -23,13 +26,14 @@ public class HorarioActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.horario);
 		
-		mListView = (ListView) findViewById(R.id.horarios_listview);
-
+		mListView = (ListView) findViewById(R.id.horarios_listview);		
 		ArrayList<String> lista = new ArrayList<String>();
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		if (parametros != null) {
 			lista = parametros.getStringArrayList("horarios");
+			TextView mProximoHorario = (TextView) findViewById(R.id.proximo_horario);
+			mProximoHorario.setText("Próximo: " + pegarProximoOnibus(lista));
 		}
 		
 		setBackground();
@@ -37,6 +41,22 @@ public class HorarioActivity extends Activity{
 		arrayAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, lista);
 		mListView.setAdapter(arrayAdapter);
 
+	}
+	
+	public String pegarProximoOnibus(ArrayList<String> horarios) {
+		Calendar horaAtual = Calendar.getInstance();
+		int hr = horaAtual.get(Calendar.HOUR);
+		int mn = horaAtual.get(Calendar.MINUTE);
+		for (int i = 0; i < horarios.size(); ++i) {
+			StringTokenizer tk = new StringTokenizer(horarios.get(i), ":");
+			int hrProx = Integer.parseInt(tk.nextToken());
+			int mnProx = Integer.parseInt(tk.nextToken());
+			
+			if (hrProx >= hr && mnProx >= mn) {
+				return horarios.get(i);
+			}								
+		}	
+		return horarios.get(0);
 	}
 
 	@Override
