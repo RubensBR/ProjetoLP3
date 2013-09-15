@@ -1,5 +1,6 @@
 package br.com.busaojp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -30,9 +31,19 @@ public class LoginActivity extends Activity {
 		
 	}
 
+	@SuppressLint("NewApi")
 	public void enviar(View v) {
 		String login = mLogin.getText().toString();
 		String senha = mSenha.getText().toString();
+		if (login.isEmpty() && senha.isEmpty()) {
+			Toast.makeText(this, "Insira seu login e senha", Toast.LENGTH_SHORT).show();
+		}
+		if (login.isEmpty()) {
+			Toast.makeText(this, "Insira seu login", Toast.LENGTH_SHORT).show();
+		}
+		if (senha.isEmpty()) {
+			Toast.makeText(this, "Insira sua senha", Toast.LENGTH_SHORT).show();
+		}
 		new EnviarTask(login, senha).execute();
 	}
 	
