@@ -53,9 +53,7 @@ public class PesquisarActivity extends Activity {
 			}
 		});
 		
-		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutPesquisa);
-		BusaoPreferences.backgroundPreferencia(layout, this);
+		setBackground();
 		
 		ListarAsync listar = new ListarAsync();
 		listar.execute();
@@ -188,7 +186,13 @@ public class PesquisarActivity extends Activity {
       
 	public void onResume(){
         Music.play(this, R.raw.tar);
+        setBackground();
 		super.onResume();
     }
+	
+	public void setBackground(){		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutPesquisa);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+	}
 		
 }

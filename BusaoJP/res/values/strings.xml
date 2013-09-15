@@ -23,6 +23,7 @@
     <string name="title_activity_paradas">Paradas Próximas</string>
         <string name="ida">Ida</string>
     <string name="volta">Volta</string>  
+    <string name="adicionar_parada">Adicionar Parada</string>
 
     <!-- IntegracaoActivity -->
     <string name="title_activity_integracao">Terminal de Integração</string>
@@ -35,6 +36,7 @@
     <!-- RotasActivity -->
     <string name="Marcar_parada">Marcar Parada</string>
     <string name="title_activity_rotas">Rotas</string>
+    <string name="share">Compartilhe sua pesquisa!</string>
     
     
     <!-- LoginActivity -->
@@ -62,7 +64,7 @@
     <string name="summary_musica">Marque se desejar que a música seja ativada</string>
     <string name="bg">Plano de Fundo</string>
     <string name="summary_bg">Marque se desejar a outra opção de plano de fundo</string>
-     <string name="corFonte">Cor da fonte</string>
+    <string name="corFonte">Cor da fonte</string>
     <string name="summary_corFonte">Selecione a cor da fonte para o Menu Principal</string>
     <string name="dialogCFonte">Selecione a Cor da Fonte</string>
     <string name="PfMenuPrincipal">Preferências do Menu Principal</string>

@@ -1,7 +1,6 @@
 package br.com.busaojp;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -10,34 +9,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class BusaoPreferences extends PreferenceActivity {
-	private static final String PREFERENCIAS = "preferencias";
-	private static BusaoPreferences busao;
 	
 	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        addPreferencesFromResource(R.xml.preferencias);
-	        busao = this;
 	}
 	
 	public static boolean getMusic(Context context) {
-	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("music", true);
-	}
-	
-	public static void setBackgroundChecked(LinearLayout l){
-		l.setBackgroundResource(R.drawable.altbackground);
-		SharedPreferences prefs = busao.getSharedPreferences(PREFERENCIAS, 0);
-		SharedPreferences.Editor editor = prefs.edit();
-		editor.putInt("bg", 1);
-		editor.commit();	
-	}
-	
-	public static void setBackgroundUnchecked(LinearLayout l){
-		l.setBackgroundResource(R.drawable.fundo);
-		SharedPreferences prefs = busao.getSharedPreferences(PREFERENCIAS, 0);
-		SharedPreferences.Editor editor = prefs.edit();
-		editor.putInt("bg", 2);
-		editor.commit();
+	    return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("music", false);
 	}
 	
 	public static void setFonte(int tamanho, Button b){ 
@@ -48,15 +28,25 @@ public class BusaoPreferences extends PreferenceActivity {
 		b.setTextColor(Color.parseColor(cor));  	 
 	}
 	
-	public static void backgroundPreferencia(LinearLayout layout, Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(PREFERENCIAS, 0);
-		int bg = prefs.getInt("bg", 2);
-		if (bg == 1) {
-			layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.altbackground));
-		} else {
-			layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.fundo));
-		}
+	public static String fontePreferencia(Context ctx){
+		return PreferenceManager.getDefaultSharedPreferences(ctx).getString("fonte", "14");
 	}
+	
+	public static boolean BackgroundCheck(Context ctx){
+		return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("background", false);
+	}
+	
+	public static String corFontePreferencia(Context ctx){
+		return PreferenceManager.getDefaultSharedPreferences(ctx).getString("colorf", "preto");
+	}
+	
+	public static void backgroundPreferencia(LinearLayout l, Context ctx){
+		if(BackgroundCheck(ctx)){
+			l.setBackgroundResource(R.drawable.altbackground);
+		}else{
+			l.setBackgroundResource(R.drawable.fundo);
+		}
+	}	
 	
     protected void onPause() {
         super.onPause();

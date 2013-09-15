@@ -65,9 +65,7 @@ public class ParadasActivity extends FragmentActivity {
         	gm.addMarker(new MarkerOptions().position(posicao).title("Você está aqui!"));    
         }
         
-        LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutParadas);
-		BusaoPreferences.backgroundPreferencia(layout, this);
-		
+		setBackground();
         new ListarParadasTask().execute();        
 	}
 	
@@ -79,8 +77,9 @@ public class ParadasActivity extends FragmentActivity {
     }
     
 	public void onResume(){
-		Music.play(this, R.raw.tar);
 		super.onResume();
+		Music.play(this, R.raw.tar);
+		setBackground();
 	}
 	
 	@Override
@@ -163,5 +162,10 @@ public class ParadasActivity extends FragmentActivity {
      
         return super.onOptionsItemSelected(item);
     }
+    
+    public void setBackground(){		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutParadas);
+		BusaoPreferences.backgroundPreferencia(layout, this);
+	}
 }
  

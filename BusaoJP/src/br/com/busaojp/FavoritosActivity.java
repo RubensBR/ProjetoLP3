@@ -57,8 +57,7 @@ public class FavoritosActivity extends Activity {
 			}
 		});
 		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutFavoritos);
-		BusaoPreferences.backgroundPreferencia(layout, this);
+		setBackground();
 		
 		if (mProgress != null)
 			mProgress.cancel();
@@ -227,7 +226,14 @@ public class FavoritosActivity extends Activity {
     
 	public void onResume(){
 		Music.play(this, R.raw.tar);
+		setBackground();
 		super.onResume();
+	}
+	
+    
+	public void setBackground(){
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayoutFavoritos);
+		BusaoPreferences.backgroundPreferencia(layout, this);
 	}
 }
 		

@@ -1,0 +1,38 @@
+Descrição das classes 
+
+#OnibusDAO
+Interface contendo operações básicas de acesso a alteração de dados.
+
+#OnibusDAOSQL
+Implementação da interface OnibusDAO e implementação de novos métodos.
+Essa classe é responsãovel por acessar e alterar os dados do banco de dados local.
+
+#OnibusDAOJSON 
+Implementação da interface OnibusDAO e implementação de novos métodos.
+Essca classe é responsável pela comunicação com o servidor. Todas as requisições bem
+como o processamento do JSON é feito por ela.
+
+#Onibus
+Classe que representa o ônibus.
+Ela contem infomações sobre o número e nome da linha e também é composta por outros objetos
+que contém informações adicionais como horários, rotas e etc.
+Possui também um objeto da classe RotaMaps que contém informação para preencher o mapa.
+
+#Rota
+É formada por duas listas de String contendo todos os endereços por onde o ônibus passa, 
+tanto na rota de ida quanto na rota de volta.
+
+#Posicao
+Classe que contém a informação sobre a latitude e longitude de um ponto.
+
+#Marcador 
+O marcador contém uma posicão e um nome para essa posição.
+
+#RotaMapeada
+Essa classe contém a rota do ônibus mapeada além de alguns marcadores que existem, como por exemplo a marcação do ínicio e fim da rota.
+
+#RotaMaps
+Esse classe contém dois objetos do tipo RotaMapeada, um mapeia a rota de ida e o outro a rota de volta.
+
+#Parada
+Classe que contém uma lista de posições contendo todas os pontos de ônibus.

@@ -20,6 +20,11 @@
         android:title="@string/musica"
         android:summary="@string/summary_musica"/>
     
+    <CheckBoxPreference 
+        android:key="background"
+        android:title="@string/bg"
+        android:summary="@string/summary_bg"/>
+    
     </PreferenceCategory>   
 		
     <PreferenceCategory
@@ -43,11 +48,6 @@
       	android:entries="@array/listCFonte"
       	android:entryValues="@array/opcoesCFonte"
 		android:dialogTitle="@string/dialogCFonte"/>
-   
-   <CheckBoxPreference 
-        android:key="background"
-        android:title="@string/bg"
-        android:summary="@string/summary_bg"/>
    
    </PreferenceCategory>
 
