@@ -35,7 +35,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class RotasActivity extends FragmentActivity {
 	
-	private SocialAuthAdapter adapter;
+    private SocialAuthAdapter adapter;
 	private Onibus onibus;
 
 	@Override
@@ -81,6 +81,7 @@ public class RotasActivity extends FragmentActivity {
 			gm.addMarker(new MarkerOptions().position(posicaoDispositivo).title("Você está aqui!"));
 	    }
 		
+
 		Button fb = (Button)findViewById(R.id.facebook);
         fb.setBackgroundResource(R.drawable.facebook);
         Button twitter = (Button)findViewById(R.id.twitter);
@@ -101,8 +102,7 @@ public class RotasActivity extends FragmentActivity {
 	        {
 	            adapter.authorize(RotasActivity.this, Provider.FACEBOOK);
 	        }
-	    });
-        
+	    });        
 	}
 	
 	@Override
@@ -140,6 +140,7 @@ public class RotasActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
     
+
 	private final class ResponseListener implements DialogListener {
 		@Override
 		public void onComplete(Bundle values) {

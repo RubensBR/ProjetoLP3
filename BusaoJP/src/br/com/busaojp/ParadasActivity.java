@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import br.com.busaojp.onibus.OnibusDAOJSON;
@@ -29,13 +31,15 @@ public class ParadasActivity extends FragmentActivity {
 	
 	private GoogleMap gm;
 	private ProgressDialog mProgress;
-	private boolean ativarMarcador = true;
+	private boolean ativarMarcador = false;
+	private Button marcadorButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.paradas);
-        
+		
+        marcadorButton = (Button) findViewById(R.id.ativar_desativar_marcador);
         SupportMapFragment Map = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         gm = Map.getMap();
         gm.setMyLocationEnabled(true);
@@ -46,8 +50,7 @@ public class ParadasActivity extends FragmentActivity {
 				if (!ativarMarcador)
 					return;
 				double latitude = point.latitude;
-				double longitude = point.longitude;
-				Toast.makeText(ParadasActivity.this, latitude + ", " + longitude, Toast.LENGTH_SHORT).show();				
+				double longitude = point.longitude;				
 				new SalvarParadaTask(latitude, longitude).execute();
 			}
 		});   
@@ -69,6 +72,18 @@ public class ParadasActivity extends FragmentActivity {
         new ListarParadasTask().execute();        
 	}
 	
+	public void ativarDesativarMarcaParada(View v) {
+		Button ativarDesativarButton = (Button) v;
+		if (ativarMarcador) {
+			ativarMarcador = false;
+			ativarDesativarButton.setText(R.string.adicionar_parada);
+		} else {
+			ativarMarcador = true;
+			ativarDesativarButton.setText("Cancelar");
+			Toast.makeText(this, "Clique na posição que está localizada a parada para salvá-la.",
+					Toast.LENGTH_LONG).show();
+		}
+	}
 	
 	@Override
     protected void onPause() {
@@ -117,7 +132,11 @@ public class ParadasActivity extends FragmentActivity {
 				gm.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
 						.title("Parada")
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.onibus_marcador)));
-				Toast.makeText(ParadasActivity.this, "A parada foi salva com sucesso.", Toast.LENGTH_SHORT).show();				
+				Toast.makeText(ParadasActivity.this, "A parada foi salva com sucesso.", Toast.LENGTH_SHORT).show();
+				
+				ativarMarcador = false;				
+				marcadorButton.setText(R.string.adicionar_parada);
+				
 			} else {
 				Toast.makeText(ParadasActivity.this, "Erro ao tentar salvar parada. Verifique sua conexão.", Toast.LENGTH_LONG).show();
 			}

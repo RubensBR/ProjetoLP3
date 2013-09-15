@@ -7,6 +7,8 @@ public class Onibus {
 	private Rota rota;
 	private String[] horarios;
 	
+	public Onibus() {}
+	
 	public Onibus(String linha, String nome) {
 		this.nome = nome;
 		this.linha = linha;

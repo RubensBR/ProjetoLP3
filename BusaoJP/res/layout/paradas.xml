@@ -16,8 +16,10 @@
         class="com.google.android.gms.maps.SupportMapFragment"/>
 
     <Button
+        android:id="@+id/ativar_desativar_marcador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="ativarDesativarMarcaParada"
         android:text="@string/adicionar_parada" />
 
 </LinearLayout>
