@@ -2,6 +2,8 @@ package busaojp.onibus;
 
 import java.util.ArrayList;
 
+import busao.jp.utils.LeitorItinerario;
+
 public class OnibusDAOListVersion implements OnibusDAO {
 
 	private static ArrayList<Onibus> banco;
@@ -13,27 +15,14 @@ public class OnibusDAOListVersion implements OnibusDAO {
 	}
 	
 	private ArrayList<Onibus> gerarBanco() {
-		ArrayList<Onibus> lista = new ArrayList<Onibus>();
+		ArrayList<Onibus> lista = LeitorItinerario.pegarItinerarios();
 		String[] horarios = {"05:00", "06:00", "07:00", "08:00", "09:00",
 				"10:00", "11:00"};
 		
-		for (int linha = 1; linha <= 20; ++linha) {
-			Onibus onibus = new Onibus("00" + linha, "Onibus " + linha);
-			Rota rota = new Rota();
-			ArrayList<String> ruas = new ArrayList<String>();
-			for (int rua = 1; rua <= 10; ++rua) {
-				ruas.add("rua " + rua); 
-			}
-			
-			if (linha == 13) {
-				ruas.add("rua especial");
-			}
-			rota.addRotaIda(ruas);
-			rota.addRotaVolta(ruas);
-			onibus.setRota(rota);
-			onibus.setHorarios(horarios);
-			lista.add(onibus);
+		for (Onibus bus : lista) {
+			bus.setHorarios(horarios);
 		}
+		
 		return lista;
 	}
 
