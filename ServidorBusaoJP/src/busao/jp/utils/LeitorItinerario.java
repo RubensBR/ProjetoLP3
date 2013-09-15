@@ -11,8 +11,8 @@ import busaojp.onibus.Rota;
 
 public class LeitorItinerario {
 
-	private static String ARQUIVO1 = "C:\\Users\\Rubens\\Documents\\GitHub\\ProjetoLP3\\ServidorBusaoJP\\resources\\itinerarios_parte1.txt";
-	//private static String ARQUIVO1 = "C:\\Users\\JSN-BIA\\Videos\\bia\\Projects\\Busao_JP\\ProjetoLP3\\ServidorBusaoJP\\resources\\itinerarios_parte1.txt";
+	//private static String ARQUIVO1 = "C:\\Users\\Rubens\\Documents\\GitHub\\ProjetoLP3\\ServidorBusaoJP\\resources\\itinerarios_parte1.txt";
+	private static String ARQUIVO1 = "C:\\Users\\JSN-BIA\\Videos\\bia\\Projects\\Busao_JP\\ProjetoLP3\\ServidorBusaoJP\\resources\\itinerarios_parte1.txt";
 	private static String MARCADOR = "<linha>";
 	
 	public static ArrayList<Onibus> pegarItinerarios() {

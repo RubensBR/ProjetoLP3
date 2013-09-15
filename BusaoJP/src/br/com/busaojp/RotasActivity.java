@@ -1,6 +1,11 @@
 package br.com.busaojp;
 
-import java.security.Provider;
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.brickred.socialauth.android.SocialAuthError;
+import org.brickred.socialauth.android.SocialAuthListener;
+
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -29,9 +34,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+
 public class RotasActivity extends FragmentActivity {
 	
-//	private SocialAuthAdapter adapter;
+	private SocialAuthAdapter adapter;
 	private Onibus onibus;
 
 	@Override
@@ -76,17 +82,17 @@ public class RotasActivity extends FragmentActivity {
 			gm.addMarker(new MarkerOptions().position(posicaoDispositivo).title("Você está aqui!"));
 	    }
 		
-//		Button fb = (Button)findViewById(R.id.facebook);
-//        fb.setBackgroundResource(R.drawable.facebook);
-//		adapter = new SocialAuthAdapter(new ResponseListener());
-//		
-//		fb.setOnClickListener(new OnClickListener() 
-//	     {
-//	        public void onClick(View v) 
-//	        {
-//	            adapter.authorize(RotasActivity.this, Provider.FACEBOOK);
-//	        }
-//	    });
+		Button fb = (Button)findViewById(R.id.facebook);
+        fb.setBackgroundResource(R.drawable.facebook);
+		adapter = new SocialAuthAdapter(new ResponseListener());
+		
+		fb.setOnClickListener(new OnClickListener() 
+	     {
+	        public void onClick(View v) 
+	        {
+	            adapter.authorize(RotasActivity.this, Provider.FACEBOOK);
+	        }
+	    });
         
 	}
 	
@@ -125,55 +131,55 @@ public class RotasActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
     
-//	private final class ResponseListener implements DialogListener {
-//		@Override
-//		public void onComplete(Bundle values) {
-//			String provider = values.getString(SocialAuthAdapter.PROVIDER);
-//			Toast.makeText(RotasActivity.this, "Conectado com " + provider, Toast.LENGTH_LONG).show();
-//			String nomeLinha = onibus.getLinha() + " - " + onibus.getNome();
-//			adapter.updateStatus("Estou pesquisando a rota do busão " + nomeLinha + " no BusãoJP B|", new MessageListener(), false);
-//		}
-//
-//		@Override 
-//		public void onBack() {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//		@Override
-//		public void onCancel() {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//		@Override
-//		public void onError(SocialAuthError error) {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//	}
-//
-//	// To get status of message after authentication
-//	private final class MessageListener implements SocialAuthListener<Integer> {
-//		@Override
-//		public void onExecute(String provider, Integer t) {
-//			Integer status = t;
-//			if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204){
-//				Toast.makeText(RotasActivity.this, "Mensagem postada no " + provider + "! :)", Toast.LENGTH_LONG).show();
-//				}
-//			else
-//				Toast.makeText(RotasActivity.this, "Mensagem não postada! :(", Toast.LENGTH_LONG).show();
-//			
-//			adapter.signOut(provider);
-//		}
-//
-//		@Override
-//		public void onError(SocialAuthError arg0) {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//
-//	}
+	private final class ResponseListener implements DialogListener {
+		@Override
+		public void onComplete(Bundle values) {
+			String provider = values.getString(SocialAuthAdapter.PROVIDER);
+			Toast.makeText(RotasActivity.this, "Conectado com " + provider, Toast.LENGTH_LONG).show();
+			String nomeLinha = onibus.getLinha() + " - " + onibus.getNome();
+			adapter.updateStatus("Estou pesquisando a rota do busão " + nomeLinha + " no BusãoJP B|", new MessageListener(), false);
+		}
+
+		@Override 
+		public void onBack() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onCancel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onError(SocialAuthError error) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	}
+
+	// To get status of message after authentication
+	private final class MessageListener implements SocialAuthListener<Integer> {
+		@Override
+		public void onExecute(String provider, Integer t) {
+			Integer status = t;
+			if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204){
+				Toast.makeText(RotasActivity.this, "Mensagem postada no " + provider + "! :)", Toast.LENGTH_LONG).show();
+				}
+			else
+				Toast.makeText(RotasActivity.this, "Mensagem não postada! :(", Toast.LENGTH_LONG).show();
+			
+			adapter.signOut(provider);
+		}
+
+		@Override
+		public void onError(SocialAuthError arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	}
      
 }

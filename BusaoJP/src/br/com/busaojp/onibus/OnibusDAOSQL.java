@@ -169,7 +169,7 @@ public class OnibusDAOSQL implements OnibusDAO {
 			valores = new ContentValues();
 			valores.put(LINHA, onibus.getLinha());
 			valores.put(ORDEM, i + 1);
-			valores.put(LOGRADOURO, ida.get(i));
+			valores.put(LOGRADOURO, volta.get(i));
 			valores.put(SENTIDO, VOLTA);
 			sql.insertOrThrow(TABELA_ITINERARIO, null, valores);
 		}

@@ -37,12 +37,15 @@ public class LoginActivity extends Activity {
 		String senha = mSenha.getText().toString();
 		if (login.isEmpty() && senha.isEmpty()) {
 			Toast.makeText(this, "Insira seu login e senha", Toast.LENGTH_SHORT).show();
+			return;
 		}
 		if (login.isEmpty()) {
 			Toast.makeText(this, "Insira seu login", Toast.LENGTH_SHORT).show();
+			return;
 		}
 		if (senha.isEmpty()) {
 			Toast.makeText(this, "Insira sua senha", Toast.LENGTH_SHORT).show();
+			return;
 		}
 		new EnviarTask(login, senha).execute();
 	}
