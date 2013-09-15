@@ -44,7 +44,7 @@ public class RotasActivity extends FragmentActivity {
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		RotaMaps rota = (RotaMaps) parametros.getSerializable("rota");
-        
+		
         SupportMapFragment Map = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         GoogleMap gm = Map.getMap();
         gm.setMyLocationEnabled(true);
@@ -154,7 +154,6 @@ public class RotasActivity extends FragmentActivity {
 
 	}
 
-	// To get status of message after authentication
 	private final class MessageListener implements SocialAuthListener<Integer> {
 		@Override
 		public void onExecute(String provider, Integer t) {
