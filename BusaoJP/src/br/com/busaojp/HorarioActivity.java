@@ -45,14 +45,13 @@ public class HorarioActivity extends Activity{
 	
 	public String pegarProximoOnibus(ArrayList<String> horarios) {
 		Calendar horaAtual = Calendar.getInstance();
-		int hr = horaAtual.get(Calendar.HOUR);
+		int hr = horaAtual.get(Calendar.HOUR_OF_DAY);
 		int mn = horaAtual.get(Calendar.MINUTE);
 		for (int i = 0; i < horarios.size(); ++i) {
 			StringTokenizer tk = new StringTokenizer(horarios.get(i), ":");
 			int hrProx = Integer.parseInt(tk.nextToken());
 			int mnProx = Integer.parseInt(tk.nextToken());
-			
-			if (hrProx >= hr && mnProx >= mn) {
+			if (hrProx > hr || (hrProx == hr && mnProx >= mn)) {
 				return horarios.get(i);
 			}								
 		}	
@@ -97,4 +96,3 @@ public class HorarioActivity extends Activity{
 	}
 
 }
-
