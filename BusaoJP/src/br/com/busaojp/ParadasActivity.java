@@ -31,13 +31,15 @@ public class ParadasActivity extends FragmentActivity {
 	
 	private GoogleMap gm;
 	private ProgressDialog mProgress;
-	private boolean ativarMarcador = true;
+	private boolean ativarMarcador = false;
+	private Button marcadorButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.paradas);
-        
+		
+        marcadorButton = (Button) findViewById(R.id.ativar_desativar_marcador);
         SupportMapFragment Map = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
         gm = Map.getMap();
         gm.setMyLocationEnabled(true);
@@ -130,7 +132,11 @@ public class ParadasActivity extends FragmentActivity {
 				gm.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
 						.title("Parada")
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.onibus_marcador)));
-				Toast.makeText(ParadasActivity.this, "A parada foi salva com sucesso.", Toast.LENGTH_SHORT).show();				
+				Toast.makeText(ParadasActivity.this, "A parada foi salva com sucesso.", Toast.LENGTH_SHORT).show();
+				
+				ativarMarcador = false;				
+				marcadorButton.setText(R.string.adicionar_parada);
+				
 			} else {
 				Toast.makeText(ParadasActivity.this, "Erro ao tentar salvar parada. Verifique sua conexão.", Toast.LENGTH_LONG).show();
 			}
