@@ -54,11 +54,24 @@ public class OnibusDAOListVersion implements OnibusDAO {
 	@Override
 	public ArrayList<Onibus> buscaPorLogradouro(String logradouro) {
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();
+		logradouro = logradouro.toLowerCase();
+		boolean achouNaIda = false;
 		for (Onibus onibus : banco) {
 			for (String rua : onibus.getRota().getIda()) {
+				rua = rua.toLowerCase();
 				if (rua.contains(logradouro)) { 
 					lista.add(onibus);
+					achouNaIda = true;
 					break;
+				}
+			}
+			if (!achouNaIda) {
+				for (String rua : onibus.getRota().getVolta()) {
+					if (rua.contains(logradouro)) {
+						rua = rua.toLowerCase();
+						lista.add(onibus);	
+						break;
+					}
 				}
 			}
 		}
