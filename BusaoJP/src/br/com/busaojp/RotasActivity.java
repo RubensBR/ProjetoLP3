@@ -2,10 +2,9 @@ package br.com.busaojp;
 
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
-import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
 import org.brickred.socialauth.android.SocialAuthError;
 import org.brickred.socialauth.android.SocialAuthListener;
-
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -37,7 +36,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 public class RotasActivity extends FragmentActivity {
 	
-	private SocialAuthAdapter adapter;
+    private SocialAuthAdapter adapter;
 	private Onibus onibus;
 
 	@Override
@@ -48,6 +47,7 @@ public class RotasActivity extends FragmentActivity {
 		Intent activity = getIntent();
 		Bundle parametros = activity.getExtras();
 		RotaMaps rota = (RotaMaps) parametros.getSerializable("rota");
+
 		onibus = (Onibus) parametros.getSerializable("onibus");
         
         SupportMapFragment Map = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
@@ -84,16 +84,26 @@ public class RotasActivity extends FragmentActivity {
 		
 		Button fb = (Button)findViewById(R.id.facebook);
         fb.setBackgroundResource(R.drawable.facebook);
+        Button twitter = (Button)findViewById(R.id.twitter);
+        twitter.setBackgroundResource(R.drawable.twitter);
 		adapter = new SocialAuthAdapter(new ResponseListener());
 		
+		twitter.setOnClickListener(new OnClickListener() 
+	     {
+	        public void onClick(View v) 
+	        {
+	            adapter.authorize(RotasActivity.this, Provider.TWITTER);
+	        }
+	    });
+		
+
 		fb.setOnClickListener(new OnClickListener() 
 	     {
 	        public void onClick(View v) 
 	        {
 	            adapter.authorize(RotasActivity.this, Provider.FACEBOOK);
 	        }
-	    });
-        
+	    });        
 	}
 	
 	@Override
@@ -131,13 +141,14 @@ public class RotasActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
     
+
 	private final class ResponseListener implements DialogListener {
 		@Override
 		public void onComplete(Bundle values) {
 			String provider = values.getString(SocialAuthAdapter.PROVIDER);
 			Toast.makeText(RotasActivity.this, "Conectado com " + provider, Toast.LENGTH_LONG).show();
 			String nomeLinha = onibus.getLinha() + " - " + onibus.getNome();
-			adapter.updateStatus("Estou pesquisando a rota do busão " + nomeLinha + " no BusãoJP B|", new MessageListener(), false);
+			adapter.updateStatus("Estou pesquisando a rota do busão " + nomeLinha + " no BusãoJP :)", new MessageListener(), false);
 		}
 
 		@Override 
@@ -160,7 +171,6 @@ public class RotasActivity extends FragmentActivity {
 
 	}
 
-	// To get status of message after authentication
 	private final class MessageListener implements SocialAuthListener<Integer> {
 		@Override
 		public void onExecute(String provider, Integer t) {
