@@ -43,9 +43,11 @@ public class OnibusDAOListVersion implements OnibusDAO {
 
 	@Override
 	public ArrayList<Onibus> buscaPorLinha(String linha) {
+		linha = linha.toLowerCase();
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();
 		for (Onibus onibus : banco) {
-			if (onibus.getLinha().contains(linha) || onibus.getNome().contains(linha))
+			
+			if (onibus.getLinha().toLowerCase().contains(linha) || onibus.getNome().toLowerCase().contains(linha))
 				lista.add(onibus);
 		}
 		return lista;
@@ -55,8 +57,9 @@ public class OnibusDAOListVersion implements OnibusDAO {
 	public ArrayList<Onibus> buscaPorLogradouro(String logradouro) {
 		ArrayList<Onibus> lista = new ArrayList<Onibus>();
 		logradouro = logradouro.toLowerCase();
-		boolean achouNaIda = false;
+		boolean achouNaIda;
 		for (Onibus onibus : banco) {
+			achouNaIda = false;
 			for (String rua : onibus.getRota().getIda()) {
 				rua = rua.toLowerCase();
 				if (rua.contains(logradouro)) { 
@@ -66,9 +69,10 @@ public class OnibusDAOListVersion implements OnibusDAO {
 				}
 			}
 			if (!achouNaIda) {
+				System.out.println("entrouuuuu");
 				for (String rua : onibus.getRota().getVolta()) {
-					if (rua.contains(logradouro)) {
-						rua = rua.toLowerCase();
+					rua = rua.toLowerCase();
+					if (rua.contains(logradouro)) {						
 						lista.add(onibus);	
 						break;
 					}
